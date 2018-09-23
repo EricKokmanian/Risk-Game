@@ -22,10 +22,10 @@ Country::Country(string countryName, Player* player) {
 	armyNumber = 0;
 }
 
-Country::Country(string countryName, Player* player, int armyNumber) {
+Country::Country(string countryName, Player* player, int number) {
 	name = countryName;
 	owner = player;
-	armyNumber = armyNumber;
+	armyNumber = number;
 }
 
 string Country::getCountryName() {
@@ -44,3 +44,10 @@ void Country::setOwner(Player* player) {
 	owner = player;
 }
 
+int Country::getArmyNumber() {
+	return armyNumber;
+}
+
+void Country::setArmyNumber(int number) {
+	armyNumber = number;
+}
