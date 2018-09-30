@@ -20,6 +20,7 @@ public:
 	void addToHand(Card* card) { hand.addCard(card); }
 	Hand getHand();
 	string getName() { return name;}
+	void setPlayerName(string name);
 	void addContinent(Continent*);
 	void removeContinent(Continent*);
 

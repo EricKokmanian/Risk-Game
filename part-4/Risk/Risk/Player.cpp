@@ -46,3 +46,7 @@ void Player::removeContinent(Continent *)
 	//must implement
 }
 
+void Player::setPlayerName(string playerName) {
+	name = playerName;
+}
+
