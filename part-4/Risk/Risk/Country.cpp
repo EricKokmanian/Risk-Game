@@ -47,8 +47,8 @@ void Country::setCountryName(string countryName) {
 	name = countryName;
 }
 
-Player* Country::getOwner() {
-	return owner;
+string Country::getOwnerName() {
+	return owner->name;
 }
 
 void Country::setOwner(Player* player) {

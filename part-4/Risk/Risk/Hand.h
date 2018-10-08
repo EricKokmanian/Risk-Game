@@ -10,10 +10,14 @@ class Hand
 public:
 	Hand();
 	~Hand();
-	void addCard(Card*);
-	void removeCard(Card*);
+	void addCard(Card* card);
+	void removeCard();
+	void draw();
+	void draw(Card* card);
+	vector<Card*> getCards() { return hand; }
 
-private:
+
+public:
 	vector<Card*> hand;
 };
 #endif

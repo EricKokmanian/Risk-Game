@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 using namespace std;
-#include "Player.h"
 #include "Continent.h"
+
+class Player;
 
 class Country {
 
@@ -18,7 +19,7 @@ public:
 
 	string getCountryName();
 	void setCountryName(string countryName);
-	Player* getOwner();
+	string getOwnerName();
 	void setOwner(Player* player);
 	int getArmyNumber();
 	void setArmyNumber(int number);
@@ -28,7 +29,7 @@ public:
 	vector<Country*> getAdjacentCountries();
 	void printAdjacentCountry();
 
-private:
+public:
 	string name;
 	Player* owner;
 	int armyNumber;

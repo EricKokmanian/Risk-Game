@@ -1,7 +1,2 @@
-﻿  Card.cpp
-  Hand.cpp
-  Player.h
-  Player.cpp
-  Generating Code...
-Debug\Player.obj : warning LNK4042: object specified more than once; extras ignored
-LINK : fatal error LNK1561: entry point must be defined
+﻿  main.cpp
+  Project2.vcxproj -> C:\Users\David\Desktop\risk\Risk-Game\part-4\Risk\Debug\Project2.exe

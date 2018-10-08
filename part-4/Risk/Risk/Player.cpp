@@ -2,16 +2,19 @@
 using namespace std;
 #include "Player.h"
 
-int main() {
-	
-	return 0;
-}
 
 Player::Player()
 {
 	id = 1;
 	name = "";
 	numberOfArmy = 0;
+
+}
+
+Player::Player(string playerName)
+{
+	name = playerName;
+
 }
 
 Player::Player(int id, string name)
@@ -21,9 +24,14 @@ Player::Player(int id, string name)
 	numberOfArmy = 0;
 }
 
-void Player::addCountry(Country *)
+void Player::addDice(Dice* newDice)
 {
-	//must implement
+	dice = newDice;
+}
+
+void Player::addCountry(vector<Country*> country)
+{
+	countries = country;
 }
 
 void Player::deleteCountry(Country *)
@@ -31,17 +39,22 @@ void Player::deleteCountry(Country *)
 	//must implement
 }
 
-Hand Player::getHand()
+void Player::addToHand(Card * card)
 {
-	return Hand();
+	hand->addCard(card);
 }
 
-void Player::addContinent(Continent *)
+vector<Card*> Player::getHand()
 {
-	//must implement
+	return hand->getCards();
 }
 
-void Player::removeContinent(Continent *)
+void Player::addContinent(Continent* continent)
+{
+	continents.push_back(continent);
+}
+
+void Player::removeContinent(Continent* continent)
 {
 	//must implement
 }

@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,13 +119,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Continent.cpp" />
+    <ClCompile Include="Country.cpp" />
+    <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.h" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Continent.h" />
+    <ClInclude Include="Country.h" />
+    <ClInclude Include="Dice.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Hand.h" />
   </ItemGroup>

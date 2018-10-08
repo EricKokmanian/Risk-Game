@@ -1,37 +1,40 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 #include <iostream>
 #include <vector>
 #include "Hand.h"
-using namespace std;
+#include "Dice.h"
+#include "Continent.h"
 
 class Country;
-class Continent;
+using namespace std;
 
 class Player {
 public:
 	Player();
+	Player(string name);
 	Player(int id, string name);
-	void addCountry(Country*);
-	void deleteCountry(Country*);
+	void addDice(Dice* dice);
+	void addCountry(vector<Country*> country);
+	void deleteCountry(Country* country);
 	int getNumberOfArmy() { return numberOfArmy; }
 	void setNumberOfArmy(int numberArmy) { numberOfArmy = numberArmy; }
 	vector<Country*> getCountries() { return countries; }
-	void addToHand(Card* card) { hand.addCard(card); }
-	Hand getHand();
+	vector<Continent*> getContinents() { return continents; }
+	void addToHand(Card* card);
+	vector<Card*> getHand();
 	string getName() { return name;}
 	void setPlayerName(string name);
-	void addContinent(Continent*);
-	void removeContinent(Continent*);
+	void addContinent(Continent* continent);
+	void removeContinent(Continent* continent);
 
 
-private:
+public:
 	string name;
 	vector<Country*> countries;
 	vector<Continent*> continents;
 	int numberOfArmy;
 	int id;
-	Hand hand;
+	Hand* hand;
+	Dice* dice;
 
 };
-#endif // PLAYER_H
