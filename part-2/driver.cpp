@@ -14,11 +14,12 @@ int main() {
 	
 	c.setCountryName("Canada");
 	c.setOwner(&p1);
+	c.setArmyNumber(3);
 	
-	cout << c.getCountryName() << " belongs to " << c.getOwner -> getPlayer() << endl;
+	cout << c.getCountryName() << " belongs to " << c.getOwner -> getPlayer() << " and has an army of " << c.getArmyNumber() << endl;
 	
 	c.setOwner(&p2);
 	
-	cout << c.getCountryName() << " belongs to " << c.getOwner -> getPlayer() << endl;
+	cout << c.getCountryName() << " belongs to " << c.getOwner -> getPlayer() << " and has an army of " << c.getArmyNumber() << endl;
 
 }

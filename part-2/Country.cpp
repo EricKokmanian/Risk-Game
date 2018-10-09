@@ -44,3 +44,11 @@ Player* Country::getOwner() {
 void Country::setOwner(Player* player) {
 	owner = player;
 }
+
+int Country::getArmyNumber() {
+		return armyNbr;
+}
+
+void Country::setArmyNumber(int nbr) {
+		armyNbr = nbr;
+}

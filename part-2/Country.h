@@ -16,6 +16,8 @@ class Country {
 		void setCountryName(string countryName);
 		Player* getOwner();
 		void setOwner(Player* player);
+		int getArmyNumber();
+		void setArmyNumber(int nbr);
 	
 	private :
 		string name;
