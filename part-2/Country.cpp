@@ -71,3 +71,11 @@ Continent* Country::getContinent() {
 void Country::setContinent(Continent* contName) {
 		continent = contName;
 }
+
+void Country::addAdjacentCountry(Country* neighbor) {
+		adjacentCountries.push_back(neighbor);
+}
+
+vector<Country*> Country::getAdjacentCountries() {
+	return adjacentCountries;
+}

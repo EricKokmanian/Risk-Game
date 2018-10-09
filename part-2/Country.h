@@ -25,10 +25,13 @@ class Country {
 		void setArmyNumber(int nbr);
 		Continent* getContinent();
 		void setContinent(Continent* contName);
+		void addAdjacentCountry(Country* neighbor);
+		vector<Country*> getAdjacentCountries();
 	
 	private :
 		string name;
 		Player* owner;
 		int armyNbr;
 		Continent* continent;
+		vector<Country*> adjacentCountries;
 };
