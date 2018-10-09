@@ -9,24 +9,35 @@ Country::Country() {
 	name = "";
 	owner = NULL;
 	armyNbr = 0;
+	continent = NULL;
 }
 
 Country::Country(string countryName) {
 	name = countryName;
 	owner = NULL;
 	armyNbr = 0;
+	continent = NULL;
 }
 
 Country::Country(string countryName, Player* player) {
 	name = countryName;
 	owner = player;
 	armyNbr = 0;
+	continent = NULL;
 }
 
 Country::Country(string countryName, Player* player, int nbr) {
 	name = countryName;
 	owner = player;
 	armyNbr = nbr;
+	continent = NULL;
+}
+
+Country::Country(string countryName, Player* player, int armyNbr, Continent* contName) {
+	name = countryName;
+	owner = player;
+	armyNbr = nbr;
+	continent = contName;	
 }
 
 string Country::getCountryName() {
@@ -51,4 +62,12 @@ int Country::getArmyNumber() {
 
 void Country::setArmyNumber(int nbr) {
 		armyNbr = nbr;
+}
+
+Continent* Country::getContinent() {
+		return continent;
+}
+
+void Country::setContinent(Continent* contName) {
+		continent = contName;
 }
