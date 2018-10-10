@@ -15,5 +15,5 @@ class Map {
 		//bool ifConnectedCont(Continent* continent);
 		
 	private :
-	unordered_map<string, Country*) worldMap;
-}
+	unordered_map<string, Country*> worldMap;
+};

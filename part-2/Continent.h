@@ -14,4 +14,4 @@ class Continent {
 		
 	private :
 		string name;
-}	
+};	
