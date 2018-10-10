@@ -1,4 +1,9 @@
 #include "Hand.h"
+#include "Card.h"
+#include <string>
+#include <sstream>
+
+using namespace std;
 
 Hand::Hand()
 {
@@ -9,21 +14,7 @@ Hand::~Hand()
 {
 }
 
-void Hand::addCard(Card *)
-{
-}
-
-void Hand::removeCard()
-{
-	hand.pop_back();
-}
-
 void Hand::draw()
 {
-	
-}
-
-void Hand::draw(Card * card)
-{
-	hand.push_back(card);
+	cards.push_back((new Card));
 }

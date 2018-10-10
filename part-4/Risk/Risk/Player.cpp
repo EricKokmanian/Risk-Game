@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "Player.h"
+#include <sstream>
 
 
 Player::Player()
@@ -29,34 +30,32 @@ void Player::addDice(Dice* newDice)
 	dice = newDice;
 }
 
-void Player::addCountry(vector<Country*> country)
+void Player::addCountry(Country* country)
 {
-	countries = country;
+	countries.push_back(country);
 }
 
-void Player::deleteCountry(Country *)
+void Player::setHand(Hand* h)
 {
-	//must implement
+	hand = h;
 }
 
-void Player::addToHand(Card * card)
+string Player::getHand()
 {
-	hand->addCard(card);
-}
-
-vector<Card*> Player::getHand()
-{
-	return hand->getCards();
+	stringstream ss;
+	for (size_t i = 0; i < hand->cards.size(); ++i)
+	{
+		if (i != 0)
+			ss << ",";
+		ss << hand->cards[i]->getType();
+	}
+	string s = ss.str();
+	return s;
 }
 
 void Player::addContinent(Continent* continent)
 {
 	continents.push_back(continent);
-}
-
-void Player::removeContinent(Continent* continent)
-{
-	//must implement
 }
 
 void Player::setPlayerName(string playerName) {

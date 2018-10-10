@@ -14,18 +14,17 @@ public:
 	Player(string name);
 	Player(int id, string name);
 	void addDice(Dice* dice);
-	void addCountry(vector<Country*> country);
-	void deleteCountry(Country* country);
+	Dice* getDice() { return dice; }
+	void addCountry(Country* country);
 	int getNumberOfArmy() { return numberOfArmy; }
 	void setNumberOfArmy(int numberArmy) { numberOfArmy = numberArmy; }
 	vector<Country*> getCountries() { return countries; }
 	vector<Continent*> getContinents() { return continents; }
-	void addToHand(Card* card);
-	vector<Card*> getHand();
+	void setHand(Hand* h);
+	string getHand();
 	string getName() { return name;}
 	void setPlayerName(string name);
 	void addContinent(Continent* continent);
-	void removeContinent(Continent* continent);
 
 
 public:

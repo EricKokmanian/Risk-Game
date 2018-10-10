@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-
+#include <sstream>
+#include <vector>
 using namespace std;
 #include "Country.h"
 #include "Player.h"
@@ -16,35 +17,41 @@ int main() {
 	Country USA("USA");
 	Country Mexico("Mexico");
 	Country France("France");
-	Country Spain("Spain");
-	Country Portugal("Portugal");
-	Country UK("UK");
-	Country Italy("Italy");
-	Country Germany("Germany");
-	Canada.setOwner(&David);
-	USA.setOwner(&David);
-	Portugal.setOwner(&David);
-	Italy.setOwner(&David);
-	Germany.setOwner(&David);
+	Canada.setOwner(David);
+	USA.setOwner(David);
 
-	UK.setOwner(&John);
-	Mexico.setOwner(&John);
-	France.setOwner(&John);
-	Spain.setOwner(&John);
+	Mexico.setOwner(John);
+	France.setOwner(John);
 
-	David.addCountry({ &Canada, &USA, &Portugal, &Italy, &Germany });
-	John.addCountry({ &UK, &Mexico, &France, &Spain });
-
-	Card newcard1;
-	Card newcard2;
-	David.addToHand(&newcard1);
-	David.addToHand(&newcard2);
+	Hand h1;
+	h1.draw();
+	h1.draw();
+	h1.draw();
+	h1.draw();
+	h1.draw();
+	h1.draw();
+	h1.draw();
+	David.setHand(&h1);
 
 	Dice diceObj;
 	David.addDice(&diceObj);
+	vector<int> v = David.getDice()->roll(2);
 
-	cout << "List of owners of Canada: " << Canada.getOwnerName() << endl;
-	cout << "Type of cards that David has : " << newcard1.getType() << "and" << newcard2.getType() << endl;
+	stringstream ss;
+	for (size_t i = 0; i < v.size(); ++i)
+	{
+		if (i != 0)
+			ss << ",";
+		ss << v[i];
+	}
+	string s = ss.str();
+
+
+	cout << "Owner of Canada: " << Canada.getOwnerName() << endl;
+	cout << "Owner of Mexico: " << Mexico.getOwnerName() << endl;
+	cout << "David's cards: " << David.getHand() << endl;
+	cout << "David rolls 2 dice and gets: " << s << endl;
+
 
 	system("pause");
 }

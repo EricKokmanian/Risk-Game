@@ -17,7 +17,7 @@ void Driver::start()
 
 void Driver::reinforce(Player* p, int* multiplier)
 {
-	int nb = (p->getCountries().size())/3;
+	/*int nb = (p->getCountries().size())/3;
 	if (nb < 3)
 		nb = 3;
 
@@ -46,10 +46,10 @@ void Driver::reinforce(Player* p, int* multiplier)
 		++ (*multiplier);
 		p->hand->removeCard();
 		p->hand->removeCard();
-		p->hand->removeCard();
-	}
+		p->hand->removeCard();}*/
 
-	p->setNumberOfArmy(nb);
+
+	//p->setNumberOfArmy(nb);
 }
 
 void Driver::attack(Player* p)
