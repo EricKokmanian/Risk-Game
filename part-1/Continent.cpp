@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
-using namespace std;
 #include "Continent.h"
+
+using namespace std;
+
 
 Continent::Continent() {
 	name = "";

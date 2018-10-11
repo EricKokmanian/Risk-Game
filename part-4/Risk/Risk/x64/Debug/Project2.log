@@ -1,0 +1,20 @@
+﻿  Card.cpp
+  Continent.cpp
+  Country.cpp
+  Dice.cpp
+c:\users\sunxp\desktop\github\risk-game\part-4\risk\risk\dice.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Driver.cpp
+  Hand.cpp
+  main.cpp
+  Player.h
+  Player.cpp
+  Generating Code...
+x64\Debug\Player.obj : warning LNK4042: object specified more than once; extras ignored
+main.obj : error LNK2019: unresolved external symbol "public: __cdecl Player::Player(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Player@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::addDice(class Dice *)" (?addDice@Player@@QEAAXPEAVDice@@@Z) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::setHand(class Hand *)" (?setHand@Player@@QEAAXPEAVHand@@@Z) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Player::getHand(void)" (?getHand@Player@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::reinforce(void)" (?reinforce@Player@@QEAAXXZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::attack(void)" (?attack@Player@@QEAAXXZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Player::fortify(void)" (?fortify@Player@@QEAAXXZ) referenced in function main
+C:\Users\SunXP\Desktop\Github\Risk-Game\part-4\Risk\x64\Debug\Project2.exe : fatal error LNK1120: 7 unresolved externals

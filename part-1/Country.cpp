@@ -1,13 +1,15 @@
 #include <iostream>
-
-using namespace std;
 #include "Country.h"
 #include "Player.h"
+
+using namespace std;
+
 
 Country::Country() {
 	name = "";
 	owner = NULL;
 	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
@@ -15,27 +17,15 @@ Country::Country(string countryName) {
 	name = countryName;
 	owner = NULL;
 	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
-Country::Country(string countryName, Player* player) {
+Country::Country(string countryName, Continent* continentName) {
 	name = countryName;
-	owner = player;
+	owner = NULL;
 	armyNumber = 0;
-	continent = NULL;
-}
-
-Country::Country(string countryName, Player* player, int number) {
-	name = countryName;
-	owner = player;
-	armyNumber = number;
-	continent = NULL;
-}
-
-Country::Country(string countryName, Player* player, int number, Continent* continentName) {
-	name = countryName;
-	owner = player;
-	armyNumber = number;
+	visited = false;
 	continent = continentName;
 }
 
@@ -63,6 +53,14 @@ void Country::setArmyNumber(int number) {
 	armyNumber = number;
 }
 
+bool Country::getVisited() {
+	return visited;
+}
+
+void Country::setVisited(bool value) {
+	visited = value;
+}
+
 Continent * Country::getContinent()
 {
 	return continent;
@@ -75,7 +73,7 @@ void Country::setContinent(Continent* continentName) {
 void Country::addAdjacentCountry(Country* countryObject) {
 	adjacentCountries.push_back(countryObject);
 }
-vector<Country*> Country::getAdjacentCountries() {
+vector<Country*>& Country::getAdjacentCountries() {
 	return adjacentCountries;
 }
 

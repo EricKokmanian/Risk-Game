@@ -1,2 +1,3 @@
-﻿  main.cpp
+﻿  Map.cpp
+c:\users\sunxp\desktop\github\risk-game\part-1\map.cpp(90): warning C4715: 'Map::ifConnectedContinent': not all control paths return a value
   Project1.vcxproj -> C:\Users\SunXP\Desktop\Github\Risk-Game\part-1\Debug\Project1.exe
