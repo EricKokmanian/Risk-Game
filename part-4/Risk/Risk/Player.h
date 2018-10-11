@@ -25,6 +25,9 @@ public:
 	string getName() { return name;}
 	void setPlayerName(string name);
 	void addContinent(Continent* continent);
+	void reinforce();
+	void attack();
+	void fortify();
 
 
 public:

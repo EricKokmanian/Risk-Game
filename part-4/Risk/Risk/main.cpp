@@ -46,6 +46,9 @@ int main() {
 	}
 	string s = ss.str();
 
+	David.reinforce();
+	David.attack();
+	David.fortify();
 
 	cout << "Owner of Canada: " << Canada.getOwnerName() << endl;
 	cout << "Owner of Mexico: " << Mexico.getOwnerName() << endl;
