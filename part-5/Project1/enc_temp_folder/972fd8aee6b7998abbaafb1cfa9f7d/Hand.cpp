@@ -22,7 +22,6 @@ vector<Card*>& Hand::getCards() {
 
 int Hand::exchange(Deck& deck) {
 	unordered_map<string, int> sortedCards;
-	int count = 0;
 	for (auto it = cards.begin(); it != cards.end(); ++it) {
 		sortedCards[(*it)->getType()]++;
 	}
@@ -32,15 +31,8 @@ int Hand::exchange(Deck& deck) {
 			return calculateExchangedArmySize();
 		}
 		else if ((*it).second != 0) {
-			count++;
-			if (count == 3) {
-				exchangeDifferentCards(deck);
-				return calculateExchangedArmySize();
-			}
-			else {
-				return 0;
-			}
-			
+			exchangeDifferentCards(deck);
+			return calculateExchangedArmySize();
 		}
 		else {
 			return 0;

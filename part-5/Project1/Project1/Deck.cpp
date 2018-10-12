@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Deck.h"
 
 using namespace std;
@@ -27,11 +29,16 @@ void Deck::printCards() {
 	}
 }
 
-Card* Deck::draw() {
+void Deck::draw(Hand& playerHand) {
 	// randomly choose a card from the deck
+	srand(time(NULL));
 	int index = rand() % getNumberOfCards();
-	Card* cardDrawn = cardDeck[index];
+	// add card to player's hand
+	playerHand.addCardToHand(cardDeck[index]);
 	// remove the card at that index from the deck
 	cardDeck.erase(cardDeck.begin() + index);
-	return cardDrawn;
+}
+
+void Deck::addCardToDeck(Card* card) {
+	cardDeck.push_back(card);
 }
