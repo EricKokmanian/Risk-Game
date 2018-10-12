@@ -51,8 +51,8 @@ string Country::getOwnerName() {
 	return owner->name;
 }
 
-void Country::setOwner(Player& player) {
-	owner = &player;
+void Country::setOwner(Player* player) {
+	owner = player;
 }
 
 int Country::getArmyNumber() {

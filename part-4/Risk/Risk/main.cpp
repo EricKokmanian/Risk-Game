@@ -17,11 +17,10 @@ int main() {
 	Country USA("USA");
 	Country Mexico("Mexico");
 	Country France("France");
-	Canada.setOwner(David);
-	USA.setOwner(David);
-
-	Mexico.setOwner(John);
-	France.setOwner(John);
+	David.addCountry(&Canada);
+	David.addCountry(&USA);
+	John.addCountry(&Mexico);
+	John.addCountry(&France);
 
 	Hand h1;
 	h1.draw();
@@ -50,8 +49,7 @@ int main() {
 	David.attack();
 	David.fortify();
 
-	cout << "Owner of Canada: " << Canada.getOwnerName() << endl;
-	cout << "Owner of Mexico: " << Mexico.getOwnerName() << endl;
+	cout << "Countries of David: " << David.getCountries() << endl;
 	cout << "David's cards: " << David.getHand() << endl;
 	cout << "David rolls 2 dice and gets: " << s << endl;
 

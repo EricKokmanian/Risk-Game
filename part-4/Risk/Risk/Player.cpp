@@ -35,6 +35,26 @@ void Player::addCountry(Country* country)
 	countries.push_back(country);
 }
 
+string Player::getCountries()
+{
+	stringstream ss;
+	for (size_t i = 0; i < countries.size(); ++i)
+	{
+		if (i != 0)
+			ss << ",";
+		ss << countries[i]->getCountryName();
+	}
+	string s = ss.str();
+	return s;
+	
+
+	/*for (auto it = countries.begin(); it != countries.end(); ++it) {
+		cout << (*it)->getCountryName() << ", " << end;
+	}
+	string s = ss.str();
+	return s;*/
+}
+
 void Player::setHand(Hand* h)
 {
 	hand = h;

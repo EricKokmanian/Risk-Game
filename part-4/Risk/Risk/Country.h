@@ -20,7 +20,7 @@ public:
 	string getCountryName();
 	void setCountryName(string countryName);
 	string getOwnerName();
-	void setOwner(Player& player);
+	void setOwner(Player* player);
 	int getArmyNumber();
 	void setArmyNumber(int number);
 	Continent* getContinent();
