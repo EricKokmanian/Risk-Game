@@ -2,8 +2,6 @@
 using namespace std;
 #include "Player.h"
 #include <sstream>
-#include "Hand.h"
-#include "Card.h"
 
 
 Player::Player()
@@ -37,7 +35,6 @@ void Player::addCountry(Country* country)
 	countries.push_back(country);
 }
 
-//Get list of country names by converting the country vector into strings thanks to stringstream
 string Player::getCountries()
 {
 	stringstream ss;
@@ -63,7 +60,6 @@ void Player::setHand(Hand* h)
 	hand = h;
 }
 
-//convert cards in hand into a list of strings
 string Player::getHand()
 {
 	stringstream ss;

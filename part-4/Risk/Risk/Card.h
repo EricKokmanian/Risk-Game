@@ -11,7 +11,7 @@ public:
 	~Card();
 	string getType();
 
-public:
+private:
 	string type;
 };
 #endif

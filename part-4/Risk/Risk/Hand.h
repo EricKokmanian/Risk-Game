@@ -10,7 +10,6 @@ class Hand
 public:
 	Hand();
 	~Hand();
-	//add new cards into that vector of cards
 	void draw();
 
 
