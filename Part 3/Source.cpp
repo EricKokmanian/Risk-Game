@@ -15,9 +15,11 @@ float Dice::num6;
 float Dice::timesRolled;
 Dice::Dice()
 {
-	//numRoll = (rand() % 6) + 1;
+	//initiating numbers as 0
 	srand(time(0));
+	//timesrolled will store the number of times a dice has been rolled so far to get the percantage at the end
 	 float timesRolled = 0;
+	//6 float variables to store each time each of the numbers 1-6 has been rolled
 	float num1 = 0;
 	 float num2 = 0;
 	 float num3 = 0;
@@ -26,17 +28,21 @@ Dice::Dice()
 	 float num6 = 0;
 }
 
+//roll method that takes number of dices to be rolled as input
 vector<int> Dice::roll(int x)
 {
+	//if number of dices is less than 1 or bigger than 3 return an error
 	if (x < 1 || x>3)
 	{
 		cout << "Error! invalid number of dice! \n";
 		system("pause");
 		exit(1);
 	}
+	//vector to push the result of the dice in it
 	vector<int> vect;
 	for (int i = 0; i < x; i++)
 	{
+		//randomize the roll of the dice
 		int x = (rand() % 6) + 1;
 		timesRolled++;
 		if (x == 1)
@@ -65,10 +71,12 @@ vector<int> Dice::roll(int x)
 	}
 	return vect;
 }
+//a method to return how many times have been rolled so far
 int Dice::getNum() const
 {
 	return numRoll;
 }
+//a method to return the percantage of a specific number
 float Dice::getPerc(int x)
 {
 	if (timesRolled == 0)
@@ -100,6 +108,7 @@ float Dice::getPerc(int x)
 		return ((num6 / timesRolled) * 100);
 
 }
+// a method to return the percantage of all the numbers rolled so far
 vector<float> Dice::getPer()
 {
 	if (timesRolled == 0)
