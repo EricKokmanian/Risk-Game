@@ -13,9 +13,7 @@ class Country {
 	public :
 		Country();
 		Country(string countryName);
-		Country(string countryName, Player* player);
-		Country(string countryName, Player* player, int armyNbr);
-		Country(string countryName, Player* player, int armyNbr, Continent* contName);
+		Country(string countryName, Continent* continentName);
 		
 		string getCountryName();
 		void setCountryName(string countryName);
@@ -23,15 +21,19 @@ class Country {
 		void setOwner(Player* player);
 		int getArmyNumber();
 		void setArmyNumber(int nbr);
+		bool getVisited();
+		void setVisited(bool);
 		Continent* getContinent();
 		void setContinent(Continent* contName);
 		void addAdjacentCountry(Country* neighbor);
 		vector<Country*> getAdjacentCountries();
+		void printAdjacentCountry();
 	
 	private :
 		string name;
 		Player* owner;
 		int armyNbr;
+		bool visited;
 		Continent* continent;
 		vector<Country*> adjacentCountries;
 };
