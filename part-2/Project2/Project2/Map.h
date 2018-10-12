@@ -11,9 +11,9 @@ class Map {
 public:
 	Map();
 	void addCountry(string countryName, Country* countryPtr);
-	//bool ifConnected();
-	//bool ifConnectedCont(Continent* continent);
+	bool ifConnectedGraph(Country*);
+	bool ifConnectedContinent(Country*, Continent*);
 
 private:
-	unordered_map < string, Country*> worldMap;
+	unordered_map<string, Country*> worldMap;
 };

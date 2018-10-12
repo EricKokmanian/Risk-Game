@@ -8,36 +8,25 @@ using namespace std;
 Country::Country() {
 	name = "";
 	owner = NULL;
-	armyNbr = 0;
+	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
 Country::Country(string countryName) {
 	name = countryName;
 	owner = NULL;
-	armyNbr = 0;
+	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
-Country::Country(string countryName, Player* player) {
+Country::Country(string countryName, Continent* continentName) {
 	name = countryName;
-	owner = player;
-	armyNbr = 0;
-	continent = NULL;
-}
-
-Country::Country(string countryName, Player* player, int nbr) {
-	name = countryName;
-	owner = player;
-	armyNbr = nbr;
-	continent = NULL;
-}
-
-Country::Country(string countryName, Player* player, int nbr, Continent* contName) {
-	name = countryName;
-	owner = player;
-	armyNbr = nbr;
-	continent = contName;
+	owner = NULL;
+	armyNumber = 0;
+	visited = false;
+	continent = continentName;
 }
 
 string Country::getCountryName() {
@@ -57,11 +46,19 @@ void Country::setOwner(Player* player) {
 }
 
 int Country::getArmyNumber() {
-	return armyNbr;
+	return armyNumber;
 }
 
 void Country::setArmyNumber(int nbr) {
-	armyNbr = nbr;
+	armyNumber = nbr;
+}
+
+bool Country::getVisited() {
+	return visited;
+}
+
+void Country::setVisited(bool value) {
+	visited = value;
 }
 
 Continent* Country::getContinent() {
@@ -78,4 +75,11 @@ void Country::addAdjacentCountry(Country* neighbor) {
 
 vector<Country*> Country::getAdjacentCountries() {
 	return adjacentCountries;
+}
+
+void Country::printAdjacentCountry() {
+	for (auto it = adjacentCountries.begin(); it != adjacentCountries.end(); ++it) {
+		cout << (*it)->getCountryName() << ", ";
+	}
+	cout << '\n';
 }
