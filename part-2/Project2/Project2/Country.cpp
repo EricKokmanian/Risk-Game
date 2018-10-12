@@ -5,6 +5,10 @@ using namespace std;
 #include "Country.h"
 #include "Player.h"
 
+Country::~Country() {
+
+}
+
 Country::Country() {
 	name = "";
 	owner = NULL;

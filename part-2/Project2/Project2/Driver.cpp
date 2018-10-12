@@ -9,7 +9,8 @@ using namespace std;
 #include "Continent.h"
 #include "Map.h"
 
-const vector<string> explode(const string& s, const char& c)
+// Explode class that will split the strings with commas into string tokens 
+const vector<string> split(const string &s, const char &c)
 {
 	string str{ "" };
 	vector<string> v;
@@ -32,40 +33,17 @@ const vector<string> explode(const string& s, const char& c)
 
 int main() {
 
-	Map worldMap;
-
-	Player p1("Tom");
-	Player p2("Jerry");
-
-	Country c;
-	Country c2;
-	Country c3;
-
-	Continent cont;
-	cont.setContName("North America");
-
-	c.setCountryName("Canada");
-	c.setOwner(&p1);
-	c.setArmyNumber(3);
-	c.setContinent(&cont);
-
-	c2.setCountryName("USA");
-	c2.setOwner(&p2);
-	c2.setArmyNumber(4);
-	c2.setContinent(&cont);
-
-	cout << c.getCountryName() << " belongs to " << c.getOwner()->getPlayer() << " and has an army of " << c.getArmyNumber() << endl;
-
-	c.setOwner(&p2);
-
-	cout << c.getCountryName() << " belongs to " << c.getOwner()->getPlayer() << " and has an army of " << c.getArmyNumber() << endl;
+	Map worldMap; // Instantiation the Map object
+	bool isValid; // Flag
+	bool once = false;
 
 	ifstream ifs;
 	string firstLine;
 	string contName;
 	string continent;
-	Continent newContinent;
 	string terrName;
+	Country count;
+	Continent conti;
 
 	vector<string> vect;
 
@@ -73,37 +51,82 @@ int main() {
 	ifs.open("map.txt");
 
 	if (ifs.is_open()) {
-		while (!ifs.eof() && firstLine != "[Continents]") {
+
+		// Map info
+		while (! ifs.eof() && firstLine != "[Continents]") {
 			firstLine.clear();
 			getline(ifs, firstLine, '\n');
 			cout << firstLine << endl;
 
 		}
 
-		// Work with the continents
-		while (!ifs.eof() && contName != "[Territories]") {
+		// Instantiate Continents
+		while (! ifs.eof() && contName != "[Territories]") {
 			contName.clear();
 			getline(ifs, contName, '\n');
 			cout << contName << endl;
 			continent = contName.substr(0, contName.size() - 2); // Select Continent Name
-			newContinent.setContName(continent); // Instantiate new continents
-
+			//newContinent.setContName(continent); // Instantiate new continents
+			//cout << continent << endl;
 			//cout << contName.substr(contName.size() - 1, contName.size()) << endl; // Select Continent Bonus Pts
 		}
 
 
-		// Work with the territories
-		//while (! ifs.eof()) {
-		terrName.clear();
-		getline(ifs, terrName, '\n');
-		cout << terrName << endl;
+		// Instantiate Countries
+		do{
+			terrName.clear();
+			getline(ifs, terrName, '\n'); // Add line to a created string
+			//cout << terrName << endl;
 
-		vector<string> vect1{ explode(terrName,',') };
+			if (terrName != " " && terrName != "") { // Check that line is not empty
+				vector<string> vect1{ split(terrName,',') };
+
+				//for (int i = 0; i < vect1.size(); i++) {
+				//	cout << vect1.at(i) << endl;
+				//}
+
+				if (once == false) {
+					count = vect1.at(0);
+					conti = vect1.at(3);
+					once = true;
+				}
+				
+				Continent *contPtr = new Continent(vect1.at(3));
+				Country c1(vect1.at(0), contPtr); // Instantiate Country object using constructor
+				//cout << c1.getContinent()->getContName() << endl;
+
+				// Adding adjacent countries...
+				for (int z = 4; z < vect1.size(); z++) {
+					Country* neighbor = new Country(vect1.at(z));
+					c1.addAdjacentCountry(neighbor);
+
+				}
+
+				// Print adjacent countrie
+				//c1.printAdjacentCountry(); s
+
+				// Add countries to map obj
+				worldMap.addCountry(c1.getCountryName(), &c1);
+
+				cout << c1.getCountryName() << " is a country in " << c1.getContinent()->getContName() << " its neighbors are : " << endl;
+				c1.printAdjacentCountry();
+				cout << "" << endl;
+			}
+			else
+				continue;
+
+			if (ifs.eof()) {
+				cout << count.getCountryName() << endl;
+				isValid = worldMap.ifConnectedGraph(worldMap.getWorldMap()[count.getCountryName()]);
+				cout << "FIRST check : This map is " << (isValid ? "valid" : "invalid" ) << ". Countries are connected..." << endl;
+				isValid = worldMap.ifConnectedContinent(worldMap.getWorldMap()[count.getCountryName()], worldMap.getWorldMap()[count.getCountryName()] -> getContinent());
+				cout << "SECOND check : This map is " << (isValid ? "valid" : "invalid") << ". Continents are connected..." << endl;
+			}
+			
 
 
-		for (int i = 0; i < vect1.size(); i++)
-			cout << vect1.at(i) << endl;
-		//}
+		} while (!ifs.eof());
+
 	}
 	else
 		cout << "File is not open.";

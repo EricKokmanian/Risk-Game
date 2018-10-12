@@ -6,11 +6,15 @@ using namespace std;
 #include "Map.h"
 
 Map::Map() {
-	unordered_map<string, Country*> worldMap;
+	
+}
+
+unordered_map<string, Country*>& Map::getWorldMap() {
+	return worldMap;
 }
 
 void Map::addCountry(string countryName, Country* countryPtr) {
-	worldMap["countryName"] = countryPtr;
+	worldMap[countryName] = countryPtr;
 }
 
 bool Map::ifConnectedGraph(Country* countryObject) {
