@@ -1,2 +1,3 @@
-﻿  Driver.cpp
-  Project2.vcxproj -> C:\Users\erick_000\source\repos\Project2\Debug\Project2.exe
+﻿  Map.cpp
+c:\users\erick_000\documents\github\risk-game\part-2\project2\project2\map.cpp(89): warning C4715: 'Map::ifConnectedContinent': not all control paths return a value
+  Project2.vcxproj -> C:\Users\erick_000\Documents\GitHub\Risk-Game\part-2\Project2\Debug\Project2.exe
