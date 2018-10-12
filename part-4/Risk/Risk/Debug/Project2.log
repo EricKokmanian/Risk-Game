@@ -1,2 +1,13 @@
-﻿  main.cpp
+﻿  Card.cpp
+  Continent.cpp
+  Country.cpp
+  Dice.cpp
+c:\users\david\desktop\risk\risk-game\part-4\risk\risk\dice.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Driver.cpp
+  Hand.cpp
+  main.cpp
+  Player.cpp
+  Player.h
+  Generating Code...
+Debug\Player.obj : warning LNK4042: object specified more than once; extras ignored
   Project2.vcxproj -> C:\Users\David\Desktop\risk\Risk-Game\part-4\Risk\Debug\Project2.exe

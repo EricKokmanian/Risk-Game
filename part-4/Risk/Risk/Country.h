@@ -11,6 +11,7 @@ class Player;
 class Country {
 
 public:
+	//You can instantiate Country in different ways
 	Country();
 	Country(string countryName);
 	Country(string countryName, Player* player);
