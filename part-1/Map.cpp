@@ -11,7 +11,7 @@ Map::Map() {
 }
 
 void Map::addCountry(string countryName, Country* countryObject) {
-	worldMap["countryName"] = countryObject;
+	worldMap[countryName] = countryObject;
 }
 
 bool Map::ifConnectedGraph(Country* countryObject) {
