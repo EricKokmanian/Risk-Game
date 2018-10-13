@@ -12,7 +12,7 @@ int main() {
 	Map map;
 	Continent NorthAmerica;
 
-	Country Canada, USA, Mexico, Greenland, France, Italy, Chili, China, Japan, Turkey;
+	Country Canada, USA, Mexico, Greenland, France, Italy, Chili, China, Japan, Turkey, Vietnam, Iceland;
 	map.addCountry("Canada", &Canada);
 	map.addCountry("USA", &USA);
 	map.addCountry("Mexico", &Mexico);
@@ -23,6 +23,8 @@ int main() {
 	map.addCountry("China", &China);
 	map.addCountry("Japan", &Japan);
 	map.addCountry("Turkey", &Turkey);
+	map.addCountry("Vietnam", &Vietnam);
+	map.addCountry("Iceland", &Iceland);
 
 	Deck deck(map.getNumberCountries());
 	deck.printCards();
@@ -32,10 +34,13 @@ int main() {
 	Hand hand1;
 	Hand hand2;
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 5; i++) {
 		deck.draw(hand1);
 		deck.draw(hand2);
 	}
+
+	cout << "\nRemaining Cards in the deck: \n";
+	deck.printCards();
 
 	cout << "\nCards of hand1: ";
 	for (auto it = hand1.getCards().begin(); it != hand1.getCards().end(); ++it) {
@@ -45,14 +50,47 @@ int main() {
 	for (auto it = hand2.getCards().begin(); it != hand2.getCards().end(); ++it) {
 		cout << (*it)->getType() << ", ";
 	}
-
+	
+	//exchange 1
+	cout << "\nHand1 can exchange his cards for: " << hand1.exchange(deck) << endl;
+	//exchange 2
+	cout << "Hand2 can exchange his cards for: " << hand2.exchange(deck) << endl;
 
 	cout << "\nRemaining Cards in the deck: \n";
 	deck.printCards();
 
-	
+	for (int i = 0; i < 8; i++) {
+		deck.draw(hand1);
+	}
+	//exchange 3
+	hand1.exchange(deck);
+	for (int i = 0; i < 3; i++) {
+		deck.draw(hand1);
+	}
+	//exchange 4
+	hand1.exchange(deck);
+	for (int i = 0; i < 3; i++) {
+		deck.draw(hand1);
+	}
+	//exchange 5
+	hand1.exchange(deck);
+	for (int i = 0; i < 3; i++) {
+		deck.draw(hand1);
+	}
+	//exchange 6
+	hand1.exchange(deck);
+	for (int i = 0; i < 3; i++) {
+		deck.draw(hand1);
+	}
+	//exchange 7
+	hand1.exchange(deck);
+	for (int i = 0; i < 3; i++) {
+		deck.draw(hand1);
+	}
 
-	cout << hand1.exchange(deck);
+	//exchange 8
+	cout << "\nAfter 8 exchanges, hand1 can exchange his cards for: " << hand1.exchange(deck) << endl;
+
 
 	system("pause");
 	return 0;

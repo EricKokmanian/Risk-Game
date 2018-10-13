@@ -29,23 +29,23 @@ int Hand::exchange(Deck& deck) {
 	for (auto it = sortedCards.begin(); it != sortedCards.end(); ++it) {
 		if ((*it).second >= 3) {
 			exchange3Cards(deck, (*it).first);
+			exchangeTimes++;
 			return calculateExchangedArmySize();
 		}
 		else if ((*it).second != 0) {
 			count++;
 			if (count == 3) {
 				exchangeDifferentCards(deck);
+				exchangeTimes++;
 				return calculateExchangedArmySize();
 			}
-			else {
-				return 0;
-			}
-			
+
 		}
 		else {
 			return 0;
 		}
 	}
+	return 0;
 }
 
 void Hand::exchange3Cards(Deck& deck, string cardType) {
@@ -56,9 +56,25 @@ void Hand::exchange3Cards(Deck& deck, string cardType) {
 				deck.addCardToDeck(*it);
 				it = cards.erase(it);
 				count--;
+				break;
 			}
 		}
-		cout << "No 3 cards" << endl;
+		for (auto it = cards.begin(); it != cards.end(); ++it) {
+			if ((*it)->getType() == cardType) {
+				deck.addCardToDeck(*it);
+				it = cards.erase(it);
+				count--;
+				break;
+			}
+		}
+		for (auto it = cards.begin(); it != cards.end(); ++it) {
+			if ((*it)->getType() == cardType) {
+				deck.addCardToDeck(*it);
+				it = cards.erase(it);
+				count--;
+				break;
+			}
+		}
 		break;
 	}
 }
@@ -66,7 +82,7 @@ void Hand::exchange3Cards(Deck& deck, string cardType) {
 void Hand::exchangeDifferentCards(Deck& deck) {
 	bool infantry=false, cavalry=false, artillery=false;
 	while (infantry != true && cavalry != true && artillery != true) {
-		for (auto it = cards.begin(); it != cards.end(); ++it) {
+		for (auto it = cards.begin(); it != cards.end(); ) {
 			if ((*it)->getType() == "Infantry" && infantry != true) {
 				deck.addCardToDeck(*it);
 				it = cards.erase(it);
@@ -81,9 +97,7 @@ void Hand::exchangeDifferentCards(Deck& deck) {
 			}
 			
 		}
-		cout << "No 3 different cards to exchange";
 		break;
-
 	}
 }
 
@@ -95,7 +109,7 @@ int Hand::calculateExchangedArmySize() {
 	}
 	// return 15,20,25,30...
 	else {
-		return (exchangeTimes - 5) * 5;
+		return (exchangeTimes - 4) * 5;
 	}
 }
 
