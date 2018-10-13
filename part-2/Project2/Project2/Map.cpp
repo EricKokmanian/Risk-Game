@@ -33,15 +33,16 @@ bool Map::ifConnectedGraph(Country* countryObject) {
 		queue.pop();
 		// set the first country has visited
 		ptr->setVisited(true);
-		for (auto it = ptr->getAdjacentCountries().begin(); it != ptr->getAdjacentCountries().end(); it++) {
+		for (auto it = ptr->getAdjacentCountries().begin(); it != ptr->getAdjacentCountries().end(); ++it) {
 			if ((*it)->getVisited() != true) {
 				//set the country visited that is pushed in the queue
 				(*it)->setVisited(true);
-				queue.push(*it);
+				queue.push((*it));
 			}
 		}
 
 	}
+
 	// check that that all countries have been visited, or return false
 	for (auto& country : worldMap) {
 		Country *ptr = country.second;
