@@ -1,0 +1,11 @@
+﻿  Continent.cpp
+  Country.cpp
+  Driver.cpp
+  Map.cpp
+c:\users\erick_000\documents\github\risk-game\part-2\project2\project2\map.cpp(17): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Player.cpp
+  Generating code
+c:\users\erick_000\documents\github\risk-game\part-2\project2\project2\map.cpp(98): warning C4715: 'Map::ifConnectedContinent': not all control paths return a value
+  All 714 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Project2.vcxproj -> C:\Users\erick_000\Documents\GitHub\Risk-Game\part-2\Project2\x64\Release\Project2.exe

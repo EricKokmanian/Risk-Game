@@ -13,6 +13,10 @@ unordered_map<string, Country*>& Map::getWorldMap() {
 	return worldMap;
 }
 
+int Map::getSize() {
+	return worldMap.size();
+}
+
 void Map::addCountry(string countryName, Country* countryPtr) {
 	worldMap[countryName] = countryPtr;
 }

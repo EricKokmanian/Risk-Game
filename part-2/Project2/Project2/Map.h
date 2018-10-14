@@ -11,6 +11,7 @@ class Map {
 public:
 	Map();
 	unordered_map<string, Country*>& getWorldMap();
+	int getSize();
 	void addCountry(string countryName, Country* countryPtr);
 	bool ifConnectedGraph(Country*);
 	bool ifConnectedContinent(Country*, Continent*);
