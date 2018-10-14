@@ -1,0 +1,5 @@
+﻿  Dice.cpp
+c:\users\mh_awad\source\repos\dice\dice\dice.cpp(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Driver.cpp
+  Generating Code...
+  Dice.vcxproj -> c:\Users\mh_awad\source\repos\Dice\Debug\Dice.exe
