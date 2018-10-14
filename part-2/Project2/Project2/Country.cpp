@@ -17,6 +17,14 @@ Country::Country() {
 	continent = NULL;
 }
 
+Country::Country(Country &ref) {
+	name = ref.name;
+	owner = ref.owner;
+	armyNumber = ref.armyNumber;
+	visited = ref.visited;
+	continent = ref.continent;
+}
+
 Country::Country(string countryName) {
 	name = countryName;
 	owner = NULL;

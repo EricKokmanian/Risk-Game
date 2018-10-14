@@ -13,6 +13,7 @@ class Country {
 public:
 	Country();
 	~Country();
+	Country(Country &ref);
 	Country(string countryName);
 	Country(string countryName, Continent* continentName);
 
