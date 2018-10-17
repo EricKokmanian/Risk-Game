@@ -1,0 +1,4 @@
+﻿  Map.cpp
+c:\users\sunxp\desktop\github\risk-game\part-2\project2\project2\map.cpp(17): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\users\sunxp\desktop\github\risk-game\part-2\project2\project2\map.cpp(100): warning C4715: 'Map::ifConnectedContinent': not all control paths return a value
+  Project2.vcxproj -> C:\Users\SunXP\Desktop\Github\Risk-Game\part-2\Project2\x64\Debug\Project2.exe
