@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include "AttackPhase.h"
 
@@ -27,6 +28,7 @@ void AttackPhase::attack() {
 		}
 		chooseCountry();
 		chooseDice();
+		rollingDice();
 		break;
 	}
 }
@@ -89,5 +91,34 @@ void AttackPhase::chooseDice() {
 
 // dices are rolled and change army values
 void AttackPhase::rollingDice() {
+	vector<int> attackDiceValues;
+	vector<int> defenseDiceValues;
 
+	attackDiceValues = attacker->getDice()->roll(numAttackDices);
+	defenseDiceValues = defender->getDice()->roll(numDefenseDices);
+	sort(attackDiceValues.rbegin(), attackDiceValues.rend());
+	sort(defenseDiceValues.rbegin(), defenseDiceValues.rend());
+
+	cout << "\nThe attacker rolled : ";
+	for (auto it = attackDiceValues.begin(); it != attackDiceValues.end(); ++it) {
+		cout << (*it) << " ";
+	}
+
+	cout << "\nThe defender rolled : ";
+	for (auto it = defenseDiceValues.begin(); it != defenseDiceValues.end(); ++it) {
+		cout << (*it) << " ";
+	}
+
+	int compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
+
+	for (int i = 0; i < compareCount; i++) {
+		if (attackDiceValues[i] > defenseDiceValues[i]) {
+			defenderLost++;
+		}
+		else {
+			attackerLost++;
+		}
+	}
+	cout << "\nAttacker lost " << attackerLost << endl;
+	cout << "Defender lost " << defenderLost << endl;
 }

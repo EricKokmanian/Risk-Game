@@ -6,23 +6,16 @@ using namespace std;
 
 Player::Player()
 {
-	id = 1;
 	name = "";
 	numberOfArmy = 0;
-
+	dice = new Dice();
 }
 
 Player::Player(string playerName)
 {
 	name = playerName;
+	dice = new Dice();
 
-}
-
-Player::Player(int id, string name)
-{
-	this->id = id;
-	this->name = name;
-	numberOfArmy = 0;
 }
 
 void Player::addDice(Dice* newDice)

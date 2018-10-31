@@ -12,7 +12,6 @@ class Player {
 public:
 	Player();
 	Player(string name);
-	Player(int id, string name);
 	void addDice(Dice* dice);
 	Dice* getDice() { return dice; }
 	void addCountry(Country* country);
@@ -33,7 +32,6 @@ public:
 	vector<Country*> countries;
 	vector<Continent*> continents;
 	int numberOfArmy;
-	int id;
 	Dice* dice;
 
 };

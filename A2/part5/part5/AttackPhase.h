@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameEngine.h"
+#include "Dice.h"
 
 using namespace std;
 
@@ -18,7 +19,11 @@ class AttackPhase {
 		Player* defender;
 		Country* attackingCountry;
 		Country* defendingCountry;
+		// number of dices chosen by the attacker and defender
 		int numAttackDices;
 		int numDefenseDices;
+		// number of army lost
+		int attackerLost;
+		int defenderLost;
 
 };
