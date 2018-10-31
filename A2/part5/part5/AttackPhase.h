@@ -16,5 +16,6 @@ class AttackPhase {
 	private:
 		Player* player;
 		Country* attackingCountry;
+		Country* defendingCountry;
 
 };

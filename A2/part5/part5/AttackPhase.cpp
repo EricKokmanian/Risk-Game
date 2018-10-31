@@ -36,13 +36,17 @@ void AttackPhase::chooseCountry() {
 	cout << "Enter the corresponding number of the country you want to attack: " << endl;
 
 	int i = 1;
+	vector<Country*> defendingCountries;
 	for (auto it = attackingCountry->getAdjacentCountries().begin(); it != attackingCountry->getAdjacentCountries().end(); ++it) {
 		if ((*it)->getOwner() != player) {
+			defendingCountries.push_back((*it));
 			cout << i << ". " << (*it)->getCountryName() << endl;
 			i++;
 		}
-		
 	}
+	cin >> playerChoice;
+	defendingCountry = defendingCountries[playerChoice - 1];
+	cout << defendingCountry->getCountryName() << endl;
 }
 
 // setup the dices to be rolled
