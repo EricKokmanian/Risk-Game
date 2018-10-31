@@ -5,11 +5,12 @@
 using namespace std;
 
 AttackPhase::AttackPhase() {
-
+	numAttackDices = 0;
+	numDefenseDices = 0;
 }
 
 void AttackPhase::setPlayer(Player* player) {
-	this->player = player;
+	this->attacker = player;
 }
 
 // starts and ends the attack phase
@@ -18,11 +19,14 @@ void AttackPhase::attack() {
 	while (keepAttacking) {
 		int i = 1;
 		cout << "Please enter the corresponding number of the country you want to attack with: " << endl;
-		for (auto it = player->getCountries().begin(); it != player->getCountries().end(); ++it) {
-			cout << i << ". " << (*it)->getCountryName() << endl;
-			i++;
+		for (auto it = attacker->getCountries().begin(); it != attacker->getCountries().end(); ++it) {
+			if ((*it)->getArmyNumber() > 1) {
+				cout << i << ". " << (*it)->getCountryName() << endl;
+				i++;
+			}
 		}
 		chooseCountry();
+		chooseDice();
 		break;
 	}
 }
@@ -31,14 +35,14 @@ void AttackPhase::attack() {
 void AttackPhase::chooseCountry() {
 	int playerChoice = 0;
 	cin >> playerChoice;
-	attackingCountry = player->getCountries()[playerChoice - 1];
+	attackingCountry = attacker->getCountries()[playerChoice - 1];
 	cout << "You're gonna attack with " << attackingCountry->getCountryName() << endl;
 	cout << "Enter the corresponding number of the country you want to attack: " << endl;
 
 	int i = 1;
 	vector<Country*> defendingCountries;
 	for (auto it = attackingCountry->getAdjacentCountries().begin(); it != attackingCountry->getAdjacentCountries().end(); ++it) {
-		if ((*it)->getOwner() != player) {
+		if ((*it)->getOwner() != attacker) {
 			defendingCountries.push_back((*it));
 			cout << i << ". " << (*it)->getCountryName() << endl;
 			i++;
@@ -46,12 +50,41 @@ void AttackPhase::chooseCountry() {
 	}
 	cin >> playerChoice;
 	defendingCountry = defendingCountries[playerChoice - 1];
-	cout << defendingCountry->getCountryName() << endl;
+	defender = defendingCountry->getOwner();
 }
 
 // setup the dices to be rolled
 void AttackPhase::chooseDice() {
+	int attackArmySize = attackingCountry->getArmyNumber();
+	string attackerName = attacker->getName();
+	int defendArmySize = defendingCountry->getArmyNumber();
+	string defenderName = defender->getName();
 
+	cout << "============" << attackingCountry->getCountryName() << " OWNED BY " << attackerName << " IS ATTACKING "
+		<< defendingCountry->getCountryName() << " OWNED BY " << defenderName << "============" << endl;
+	if (attackArmySize == 2) {
+		cout << attackerName << ", you can only attack with 1 dice" << endl;
+		numAttackDices = 1;
+		system("pause");
+	}
+	else if (attackArmySize == 3) {
+		cout << attackerName << ", you can attack with 1 or 2 dices\n How many dices do you want to use?" << endl;
+		cin >> numAttackDices;
+	}
+	else {
+		cout << attackerName << ", you can attack with 1, 2 or 3 dices\n How many dices do you want to use?" << endl;
+		cin >> numAttackDices;
+	}
+
+	if (defendArmySize == 1) {
+		cout << defenderName << ", you can only defend with 1 dice" << endl;
+		numDefenseDices = 1;
+		system("pause");
+	}
+	else {
+		cout << defenderName << ", you can defend with 1 or 2 dices\n How many dices do you want to use?" << endl;
+		cin >> numDefenseDices;
+	}
 }
 
 // dices are rolled and change army values

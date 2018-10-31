@@ -14,8 +14,11 @@ class AttackPhase {
 		void rollingDice();
 
 	private:
-		Player* player;
+		Player* attacker;
+		Player* defender;
 		Country* attackingCountry;
 		Country* defendingCountry;
+		int numAttackDices;
+		int numDefenseDices;
 
 };

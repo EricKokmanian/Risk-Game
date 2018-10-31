@@ -40,6 +40,10 @@ int main() {
 	Alice.addCountry(&Mexico);
 	Alice.addCountry(&France);
 
+	Canada.setArmyNumber(5);
+	USA.setArmyNumber(3);
+	Mexico.setArmyNumber(1);
+
 	GameEngine gameEngine;
 	// gameEngine.declareAttack(&Bob);
 
