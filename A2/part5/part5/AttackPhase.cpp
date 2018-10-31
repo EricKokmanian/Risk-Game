@@ -119,6 +119,11 @@ void AttackPhase::rollingDice() {
 			attackerLost++;
 		}
 	}
-	cout << "\nAttacker lost " << attackerLost << endl;
-	cout << "Defender lost " << defenderLost << endl;
+	cout << "\nAttacker lost an army of " << attackerLost << endl;
+	cout << "Defender lost an army of " << defenderLost << endl;
+
+	int attackArmySize = attacker->getNumberOfArmy();
+	int defendArmySize = defender->getNumberOfArmy();
+	attacker->setNumberOfArmy(attackArmySize - attackerLost);
+	defender->setNumberOfArmy(defendArmySize - defenderLost);
 }
