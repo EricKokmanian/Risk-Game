@@ -5,6 +5,7 @@
 
 using namespace std;
 
+class Country;
 class Map {
 public:
 	Map();

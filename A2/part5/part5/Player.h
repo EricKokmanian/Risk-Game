@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "Hand.h"
 #include "Dice.h"
 #include "Continent.h"
 #include "Country.h"
 
 using namespace std;
 
+class Country;
 class Player {
 public:
 	Player();
@@ -18,17 +18,15 @@ public:
 	void addCountry(Country* country);
 	int getNumberOfArmy() { return numberOfArmy; }
 	void setNumberOfArmy(int numberArmy) { numberOfArmy = numberArmy; }
-	string getCountries();
+	vector<Country*>& getCountries();
 	vector<Continent*> getContinents() { return continents; }
-	void setHand(Hand* h);
-	string getHand();
 	string getName() { return name; }
 	void setPlayerName(string name);
+	string getPlayerName();
 	void addContinent(Continent* continent);
 	void reinforce() {};
 	void attack() {};
 	void fortify() {};
-
 
 public:
 	string name;
@@ -36,7 +34,6 @@ public:
 	vector<Continent*> continents;
 	int numberOfArmy;
 	int id;
-	Hand* hand;
 	Dice* dice;
 
 };

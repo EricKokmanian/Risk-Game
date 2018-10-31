@@ -15,6 +15,12 @@ Deck::Deck(int numOfCountries) {
 	}
 }
 
+Deck::~Deck() {
+	for (auto it = cardDeck.begin(); it != cardDeck.end(); ++it) {
+		delete (*it);
+	}
+}
+
 vector<Card*>& Deck::getCards() {
 	return cardDeck;
 }
