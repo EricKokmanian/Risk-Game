@@ -133,7 +133,7 @@ int main() {
 					// Checks whether continents are connected
 					if (ifs.eof()) {
 						try {
-							cout << "This map has initialized a total of " << worldMap.getSize() << " countries..." << endl;
+							//cout << "This map has initialized a total of " << worldMap.getSize() << " countries..." << endl;
 							cout << "Spread out on " << (contNbr - 2) << " different continents." << endl;
 							cout << "-------------------------------------------------------------\n" << endl;
 

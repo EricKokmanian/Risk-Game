@@ -8,6 +8,7 @@ class Card
 {
 public:
 	Card();
+	Card(int);
 	~Card();
 	string getType();
 

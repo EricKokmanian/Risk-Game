@@ -14,6 +14,10 @@ void Map::addCountry(string countryName, Country* countryObject) {
 	worldMap[countryName] = countryObject;
 }
 
+int Map::getSize() {
+	return worldMap.size();
+}
+
 bool Map::ifConnectedGraph(Country* countryObject) {
 	// reset all countryObjects to false
 	for (auto& country : worldMap) {

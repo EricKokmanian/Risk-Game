@@ -9,6 +9,7 @@ class Map {
 public:
 	Map();
 	void addCountry(string, Country*);
+	int getSize();
 	bool ifConnectedGraph(Country*);
 	bool ifConnectedContinent(Country*, Continent*);
 
