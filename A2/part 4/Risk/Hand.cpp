@@ -2,6 +2,7 @@
 #include "Card.h"
 #include <string>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -19,3 +20,5 @@ void Hand::draw()
 	Card c;
 	cards.push_back(c);
 }
+
+

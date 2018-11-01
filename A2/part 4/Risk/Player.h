@@ -23,14 +23,15 @@ public:
 	void setNumberOfArmy(int numberArmy) { numberOfArmy = numberArmy; }
 	string getCountries();
 	vector<Continent> getContinents() { return continents; }
-	void setHand(Hand h);
-	string getHand();
+	void setHand(Hand* h);
+	Hand& getHand();
 	string getName() { return name;}
 	int ifOwnContinent();
 	void setPlayerName(string name);
 	void addContinent(Continent continent);
 	void attack() {};
 	void fortify() {};
+	int exchange();
 
 
 public:
@@ -40,7 +41,7 @@ public:
 	vector<Continent> continents;
 	int numberOfArmy;
 	int id;
-	Hand hand;
+	Hand* hand;
 	Dice dice;
 
 };

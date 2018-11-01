@@ -2,9 +2,12 @@
 using namespace std;
 #include "Player.h"
 #include "Country.h"
+#include "Hand.h"
+#include "Card.h"
 #include <sstream>
 #include "Map.h"
 #include <algorithm>
+#include <vector>
 
 
 Player::Player()
@@ -59,27 +62,122 @@ string Player::getCountries()
 	return s;*/
 }
 
-void Player::setHand(Hand h)
+void Player::setHand(Hand* h)
 {
 	hand = h;
 }
 
-string Player::getHand()
+Hand& Player::getHand()
 {
-	stringstream ss;
-	for (size_t i = 0; i < hand.cards.size(); ++i)
-	{
-		if (i != 0)
-			ss << ",";
-		ss << hand.cards[i].getType();
-	}
-	string s = ss.str();
-	return s;
+	return *hand;
 }
 
 void Player::addContinent(Continent continent)
 {
 	continents.push_back(continent);
+}
+
+int Player::exchange()
+{
+	int armies = 0;
+	int infantry = 0;
+	int cavalry = 0;
+	int artillery = 0;
+	for (int x = 0;x < getHand().cards.size();x++) {
+		if (getHand().cards[x].getType() == "Infantry") {
+			infantry++;
+		}
+		else if (getHand().cards[x].getType() == "Cavalry") {
+			cavalry++;
+		}
+		else if (getHand().cards[x].getType() == "Artillery") {
+			artillery++;
+		}
+	}
+
+	bool done = false;
+
+	if (getHand().cards.size() > 5) {
+		cout << "You have more than 5 cards. Please trade a set." << endl;
+	}
+	if (infantry >= 3) {
+		string answer;
+		cout << "You have at least 3 Infantry cards. Do you wish to trade 3 cards for armies? (yes or no)" << endl;
+		cin >> answer;
+		if (answer == "yes") {
+			int a = 0;
+			for (size_t i = 0; i < getHand().cards.size(); )
+			{
+				if (getHand().cards[i].getType() == "Infantry" && a<4)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+				}
+				else
+				{
+					i++;
+				}
+			}
+			done = true;
+			armies = 3;
+		}
+	}
+	if (cavalry >= 3 && !done) {
+		string answer;
+		cout << "You have at least 3 Cavalry cards. Do you wish to trade 3 cards for armies? (yes or no)" << endl;
+		cin >> answer;
+		if (answer == "yes") {
+			int a = 0;
+			for (size_t i = 0; i < getHand().cards.size(); )
+			{
+				if (getHand().cards[i].getType() == "Cavalry" && a < 4)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+				}
+				else
+				{
+					i++;
+				}
+			}
+			done = true;
+			armies = 3;
+		}
+	}
+
+	if (artillery >= 3 && !done) {
+		string answer;
+		cout << "You have at least 3 Artillery cards. Do you wish to trade 3 cards for armies? (yes or no)" << endl;
+		cin >> answer;
+		if (answer == "yes") {
+			int a = 0;
+			for (size_t i = 0; i < getHand().cards.size(); )
+			{
+				if (getHand().cards[i].getType() == "Artillery" && a < 4)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+				}
+				else
+				{
+					i++;
+				}
+			}
+			done = true;
+			armies = 3;
+		}
+	}
+
+	if (artillery >= 1 && cavalry >= 1 && infantry >= 1 && !done) {
+		string answer;
+		cout << "You have at least 1 card of each type. Do you wish to trade 3 cards for armies? (yes or no)" << endl;
+		cin >> answer;
+		if (answer == "yes") {
+			/*getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Infantry"));
+			getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Cavalry"));
+			getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Artillery"));*/
+			done = true;
+			armies = 3;
+		}
+	}
+	return armies;
 }
 
 int Player::ifOwnContinent()

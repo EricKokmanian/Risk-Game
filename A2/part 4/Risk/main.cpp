@@ -58,34 +58,21 @@ int main() {
 	Driver d;
 
 	//reinforce method for player David while having a few countries in possession
-	d.reinforce(worldMap, &David);
+	//d.reinforce(worldMap, David);
 
 	//reinforce method for player John while having Australia as a continent value
-	d.reinforce2(worldMap2, &John);
+	//d.reinforce2(worldMap2, John);
 
-	/*Hand h1;
+	Hand h1;
 	h1.draw();
 	h1.draw();
 	h1.draw();
 	h1.draw();
 	h1.draw();
 	h1.draw();
-	h1.draw();
-	David.setHand(h1);
+	David.setHand(&h1);
 
-	Dice diceObj;
-	David.addDice(diceObj);
-	vector<int> v = David.getDice().roll(2);
-
-	stringstream ss;
-	for (size_t i = 0; i < v.size(); ++i)
-	{
-		if (i != 0)
-			ss << ",";
-		ss << v[i];
-	}
-	string s = ss.str();*/
-
+	d.reinforce3(worldMap, David);
 
 	system("pause");
 }
