@@ -9,12 +9,27 @@ Map::Map() {
 	unordered_map<string, Country*> worldMap;
 }
 
+int Map::getSize() {
+	return worldMap.size();
+}
+
 unordered_map<string, Country*>& Map::getWorldMap() {
 	return worldMap;
 }
 
 void Map::addCountry(string countryName, Country* countryPtr) {
 	worldMap["countryName"] = countryPtr;
+}
+
+Country* Map::getCountry(string country)
+{
+	for (auto& x : worldMap)
+	{
+		if (x.second->getCountryName() == country) {
+			return x.second;
+		}
+	}
+	return NULL;
 }
 
 bool Map::ifConnectedGraph(Country* countryObject) {

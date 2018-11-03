@@ -9,6 +9,6 @@ private :
 
 public :
 	const vector<string> split(const string &s, const char &c);
-	int function1();
+	int verifyMap(string);
 
 };

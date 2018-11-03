@@ -53,6 +53,14 @@ void Country::setOwner(Player* player) {
 	owner = player;
 }
 
+bool Country::getVisited() {
+	return visited;
+}
+
+void Country::setVisited(bool vis) {
+	visited = vis;
+}
+
 int Country::getArmyNumber() {
 	return armyNumber;
 }

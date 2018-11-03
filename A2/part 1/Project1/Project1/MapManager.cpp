@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <cstdlib>
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 
@@ -34,9 +34,9 @@ const vector<string> MapManager::split(const string &s, const char &c)
 	return v;
 }
 
-int MapManager::function1() {
+int MapManager::verifyMap(string mapName) {
 
-	Map worldMap; // Instantiation the Map object
+	Map worldMap; // Instantiation the Map object -- SHOULD BE A POINTER
 	bool isValid = false; // Flag checking whether continents are connected
 	bool isValid2 = false; // Flag checking whether countries are connected
 	bool once = false;
@@ -45,8 +45,18 @@ int MapManager::function1() {
 	bool continentInfo = false; // Flag checking wether file has continent info
 	bool countryInfo = false; // Flag checking wether file has territory info
 
+	Continent* northAmerica = NULL;
+	Continent* southAmerica = NULL;
+	Continent* africa = NULL;
+	Continent* europe = NULL;
+	Continent* asia = NULL;
+	Continent* australia = NULL;
+	Continent* contPtr = NULL;
+
 	ifstream ifs; // File input stream
+	ifstream ifs2;
 	string firstLine;
+	string firstLine2;
 	string contName;
 	string continent;
 	string contBonus;
@@ -55,12 +65,11 @@ int MapManager::function1() {
 	string terrName;
 	Country* count = NULL;
 	Country* count2 = NULL;
-	Country* neighbor = NULL;
 
 	vector<string> vect;
 
-	// Opening map file
-	ifs.open("map.txt");
+	// Opening map file specified by user
+	ifs.open("C:\\Users\\erick_000\\Documents\\GitHub\\Risk-Game\\A2\\part 1\\Project1\\Project1\\Map files\\" + mapName);
 
 	if (ifs.is_open()) {
 
@@ -84,8 +93,21 @@ int MapManager::function1() {
 			if (contName != "" && contName != "\n" && contName.size() > 2) {
 				++contNbr;
 				continent = contName.substr(0, contName.size() - 2); // Select Continent Name
-				//contBonus =  contName.substr(contName.size() - 1, contName.size()); // Select Continent Bonus Pts
-				//bonus = stoi(contBonus);
+				
+				if (continent == "North America")
+					northAmerica = new Continent(continent);
+				else if(continent == "Europe")
+					europe = new Continent(continent);
+				else if(continent == "South America")
+					southAmerica = new Continent(continent);
+				else if(continent == "Africa")
+					africa = new Continent(continent);
+				else if (continent == "Asia")
+					asia = new Continent(continent);
+				else if (continent == "Australia")
+					australia = new Continent(continent);
+				else
+					contPtr = new Continent(continent);
 			}
 
 			if (continent != contBonus || contName.size() > 2)
@@ -102,47 +124,84 @@ int MapManager::function1() {
 			if (terrName != " " && terrName != "") { // Check that line is not empty
 				vector<string> vect1{ split(terrName,',') };
 
-				//for (int i = 0; i < vect1.size(); i++) {
-				//	cout << vect1.at(i) << endl;
-				//}
+				Continent* contPtr = NULL;
+				if (vect1.at(3) == "North America")
+					contPtr = northAmerica;
+				else if (vect1.at(3) == "South America")
+					contPtr = southAmerica;
+				else if (vect1.at(3) == "Europe")
+					contPtr = europe;
+				else if (vect1.at(3) == "Asia")
+					contPtr = asia;
+				else if (vect1.at(3) == "Africa")
+					contPtr = africa;
+				else if (vect1.at(3) == "Australia")
+					contPtr = australia;
 
-				Continent *contPtr = new Continent(vect1.at(3)); // Instantiate continent
-
-				Country c1(vect1.at(0), contPtr); // Instantiate Country object using constructor
-				//cout << c1.getContinent()->getContName() << endl;
-
-				// Adding adjacent countries...
-				for (int z = 4; z < vect1.size(); z++) {
-					neighbor = new Country(vect1.at(z));
-					c1.addAdjacentCountry(neighbor);
-
-				}
-
-				if (once == false) {
-					count = new Country(vect1.at(0), contPtr);
+				Country c1(vect1.at(0), NULL, 0, contPtr); // Instantiate Country object using constructor
+				cout << c1.getCountryName() << " is a country in " << c1.getContinent()->getContinentName() << "." << endl;
+				worldMap.addCountry(c1.getCountryName(), &c1);
+				cout << "Map has a size of : " << worldMap.getSize() << endl;
+			
+				/*if (once == false) {
+					count = new Country(vect1.at(0), NULL, 0, contPtr);
 					cout << "Count: " << count->getCountryName() << endl;
 					once = true;
-				}
+				}*/
+				
 
-				// Add countries to map obj
-				worldMap.addCountry(c1.getCountryName(), &c1);
+				
+				
 
-				cout << c1.getCountryName() << " is a country in " << c1.getContinent()->getContName() << " its neighbors are : " << endl;
-				c1.printAdjacentCountry();
-				cout << "" << endl;
-
-				if (mapInfo == true && continentInfo == true && countryInfo == true) {
+				//if (mapInfo == true && continentInfo == true && countryInfo == true) {
 					// Checks whether continents are connected
 					if (ifs.eof()) {
+						cout << "Map has a size of : " << worldMap.getSize() << endl;
 						try {
-							//cout << "This map has initialized a total of " << worldMap.getSize() << " countries..." << endl;
+							ifs2.open("C:\\Users\\erick_000\\Documents\\GitHub\\Risk-Game\\A2\\part 1\\Project1\\Project1\\Map files\\" + mapName);
+							if (ifs2.is_open()) {
+								cout << "OPENED!" << endl;
+								while (! ifs2.eof() && firstLine2 != "[Territories]") {
+									firstLine2.clear();
+									getline(ifs2, firstLine2, '\n');
+								}
+								
+								cout << "TERRITORIES" << endl;
+
+								while (!ifs2.eof()) {
+									terrName.clear();
+									getline(ifs2, terrName, '\n');
+
+									if (terrName != " " && terrName != "") { // Check that line is not empty
+										vector<string> vect1{ split(terrName,',') };
+										cout << vect1.at(0) << vect1.at(4) << endl;
+										Country* country = worldMap.getCountry(vect1.at(0));
+										Country inQst = *country;
+											
+										// Adding adjacent countries...
+										for (int z = 4; z < vect1.size(); z++) {
+											Country* neighbor = NULL;
+											neighbor = worldMap.getCountry(vect1.at(z));
+											country->addAdjacentCountry(neighbor);
+
+										}
+
+										country->printAdjacentCountry();
+									}
+								}
+
+								
+
+							}
+
+							cout << "This map has initialized a total of " << worldMap.getSize() << " countries..." << endl;
 							cout << "Spread out on " << (contNbr - 2) << " different continents." << endl;
 							cout << "-------------------------------------------------------------\n" << endl;
 
-							cout << "1) Checking if continents are connected : ..." << endl;
-							isValid = worldMap.ifConnectedContinent(count, count->getContinent());
+							/*cout << "1) Checking if continents are connected : ..." << endl;
+							isValid = worldMap->ifConnectedContinent(count, count->getContinent());
 							cout << (isValid ? "---> TRUE\n" : "---> FALSE\n") << endl;
-							twice = true;
+							twice = true;*/
 						}
 						catch (...) {
 							isValid = false;
@@ -152,24 +211,26 @@ int MapManager::function1() {
 					}
 
 					// Checking whether countries are connected
-					if (twice == true) {
-						count2 = new Country(c1);
+					/*if (twice == true) {
+						count2 = new Country(*c1);
 						count2->printAdjacentCountry();
 						twice = false;
-					}
+					}*/
 
-					if (ifs.eof()) {
+					/*if (ifs.eof()) {
 						cout << "2) Checking if countries are connected : ..." << endl;
-						isValid2 = worldMap.ifConnectedGraph(count2);
+						isValid2 = worldMap->ifConnectedGraph(count2);
 						cout << (isValid2 ? "---> TRUE\n" : "---> TRUE\n") << endl;
-					}
-				}
+					}*/
+				/*}
 				else {
 					cout << "Something went wrong when trying to read map file..." << endl;
 					cout << "Map info : " << mapInfo << endl;
 					cout << "Continents info : " << continentInfo << endl;
 					cout << "Territories info : " << countryInfo << endl;
-				}
+				}*/
+
+				
 			}
 			else
 				continue;
@@ -194,5 +255,8 @@ int MapManager::function1() {
 
 	ifs.close();
 	system("pause");
+
+	return 0;
+	//delete worldMap;
 
 }

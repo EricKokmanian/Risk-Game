@@ -11,6 +11,7 @@ class Deck {
 public:
 	Deck();
 	Deck(int);
+	~Deck();
 	vector<Card*>& getCards();
 	int getNumberOfCards();
 	void printCards();

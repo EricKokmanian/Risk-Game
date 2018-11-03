@@ -18,10 +18,10 @@ public:
 	int calculateExchangedArmySize();
 	void addCardToHand(Card*);
 	vector<Card*>& getCards();
-
+	vector<Card*> cards;
 
 private:
 	static int exchangeTimes;
-	vector<Card*> cards;
+	
 };
 
