@@ -13,10 +13,14 @@ class AttackPhase {
 		void chooseCountry();
 		void chooseDice();
 		void rollingDice();
+		void isConquered();
 
 	private:
 		Player* attacker;
 		Player* defender;
+		// player names
+		string attackerName;
+		string defenderName;
 		Country* attackingCountry;
 		Country* defendingCountry;
 		// number of dices chosen by the attacker and defender
@@ -25,5 +29,8 @@ class AttackPhase {
 		// number of army lost
 		int attackerLost;
 		int defenderLost;
+		// number of army on country
+		int attackArmySize;
+		int defendArmySize;
 
 };

@@ -44,7 +44,7 @@ int main() {
 	USA.setArmyNumber(3);
 	Mexico.setArmyNumber(2);
 	Italy.setArmyNumber(4);
-	France.setArmyNumber(3);
+	France.setArmyNumber(1);
 
 	GameEngine gameEngine;
 	// gameEngine.declareAttack(&Bob);
