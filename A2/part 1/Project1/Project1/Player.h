@@ -11,6 +11,7 @@ using namespace std;
 class Player {
 public:
 	Player();
+	~Player();
 	Player(string name);
 	Player(int id, string name);
 	void addDice(Dice* dice);

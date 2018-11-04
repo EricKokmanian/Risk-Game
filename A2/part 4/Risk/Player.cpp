@@ -170,9 +170,31 @@ int Player::exchange()
 		cout << "You have at least 1 card of each type. Do you wish to trade 3 cards for armies? (yes or no)" << endl;
 		cin >> answer;
 		if (answer == "yes") {
-			/*getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Infantry"));
-			getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Cavalry"));
-			getHand().cards.erase(std::find(getHand().cards.begin(), getHand().cards.end(), "Artillery"));*/
+			int a = 0;
+			int b = 0;
+			int c = 0;
+			for (size_t i = 0; i < getHand().cards.size(); )
+			{
+				if (getHand().cards[i].getType() == "Artillery" && a < 1)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+					a++;
+				}
+				if (getHand().cards[i].getType() == "Infantry" && b < 1)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+					b++;
+				}
+				if (getHand().cards[i].getType() == "Cavalry" &&  c < 1)
+				{
+					getHand().cards.erase(getHand().cards.begin() + i);
+					c++;
+				}
+				else
+				{
+					i++;
+				}
+			}
 			done = true;
 			armies = 3;
 		}

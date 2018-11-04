@@ -32,6 +32,8 @@ void Driver::reinforce(Map worldmap, Player player)
 		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(name)->getCountryName() << " : " << worldmap.getCountry(name)->getArmyNumber() << endl;
 	}
 
+	cout << "-------- END OF REINFORCE 1 ---------" << endl;
+
 }
 
 void Driver::reinforce2(Map worldmap, Player player)
@@ -51,6 +53,9 @@ void Driver::reinforce2(Map worldmap, Player player)
 		worldmap.getCountry(name)->addArmy(1);
 		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(name)->getCountryName() << " : " << worldmap.getCountry(name)->getArmyNumber() << endl;
 	}
+
+	cout << "-------- END OF REINFORCE 2 ---------" << endl;
+
 
 }
 
@@ -72,6 +77,9 @@ void Driver::reinforce3(Map worldmap, Player player)
 		worldmap.getCountry(name)->addArmy(1);
 		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(name)->getCountryName() << " : " << worldmap.getCountry(name)->getArmyNumber() << endl;
 	}
+
+	cout << "-------- END OF REINFORCE 3 ---------" << endl;
+
 }
 
 void Driver::attack(Player* p)

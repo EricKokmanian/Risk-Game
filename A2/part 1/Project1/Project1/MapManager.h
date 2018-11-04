@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "Map.h"
 
 using namespace std;
 
@@ -9,6 +10,6 @@ private :
 
 public :
 	const vector<string> split(const string &s, const char &c);
-	int verifyMap(string);
+	Map* verifyMap(string);
 
 };
