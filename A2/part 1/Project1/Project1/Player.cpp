@@ -12,6 +12,11 @@ Player::Player()
 
 }
 
+Player::~Player()
+{
+	delete dice;
+}
+
 Player::Player(string playerName)
 {
 	name = playerName;
