@@ -3,9 +3,11 @@
 //#include .h for fortification
 
 void main() {
-	//foreach (Player p: players)
-		// call reinforcement method
-		// call attack method
-		// call fortification method
+	// while (no winner) {
+		//foreach (Player p: players)
+			// call reinforcement phase
+			// call attack phase
+			// call fortification phase
+		//
 	//
-}
+}	

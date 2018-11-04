@@ -9,6 +9,7 @@
 #include "MapManager.h"
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -19,7 +20,6 @@ int main() {
 	vector<Player*> players;
 	Dice* dicePtr = NULL;
 	Deck* deck = NULL;
-	Hand* handPtr = NULL;
 	Map* worldMap = NULL;
 
 	cout << "Welcome to the world reknown RISK Game !" << endl;
@@ -33,13 +33,14 @@ int main() {
 	MapManager mm;
 	worldMap = mm.verifyMap(mapname);
 
-	cout << "Your map file looks good!" << endl;
-	cout << "Now, please enter the number of players you wish to have (2-6): " << endl;
+	cout << "\nGREAT! Your map file looks good! (i.e. is a connected graph)" << endl;
+	cout << "\nNow, please enter the number of players you wish to have (2-6): " << endl;
 	cin >> nbrPlayers;
 
 	// Creating number of players and adding to vector of players
 	for (int i = 0; i < nbrPlayers; i++) {
-		playerPtr = new Player("Player #" + i);
+		playerPtr = new Player();
+		playerPtr->setPlayerName("Player #" + std::to_string(i));
 		players.push_back(playerPtr);
 	}
 	cout << nbrPlayers << " players have been created successfully. \n" << endl;
@@ -51,10 +52,19 @@ int main() {
 	// Adding a dice and an empty hand to every player
 	for (Player* plyr : players)
 	{
+		Hand hand1;
 		dicePtr = new Dice();
-		handPtr = new Hand();
+
+		for (int y = 0; y < 5; y++) // Draw 5 cards and add them to the hand of every player
+			deck->draw(hand1);
+
+		cout << "\nCards in hand of " << plyr->getName() << " :";
+		for (auto it = hand1.getCards().begin(); it != hand1.getCards().end(); ++it) {
+			cout << (*it)->getType() << ", ";
+		}
+
 		plyr->addDice(dicePtr);
-		plyr->setHand(handPtr);
+		plyr->setHand(&hand1);
 	}
 	
 	system("pause");
