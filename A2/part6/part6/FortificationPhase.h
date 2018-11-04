@@ -10,6 +10,7 @@ class FortificationPhase {
 public:
 	FortificationPhase();
 	FortificationPhase(Player*);
+	void setPlayer(Player*);
 	void moveArmy();
 	void selectFromCountry();
 	void selectToCountry();

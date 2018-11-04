@@ -12,6 +12,10 @@ FortificationPhase::FortificationPhase(Player* player) {
 	this->player = player;
 }
 
+void FortificationPhase::setPlayer(Player* player) {
+	this->player = player;
+}
+
 void FortificationPhase::moveArmy() {
 	cout << "Do you want to move an army from a country to another?" << endl;
 	string playerChoice = "";
