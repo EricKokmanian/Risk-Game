@@ -55,7 +55,7 @@ void AttackPhase::attack() {
 			chooseDice();
 			// game rolls the dices and declares the winner and reduces army sizes accordingly
 			rollingDice();
-			// if defending country has 0 army, ownership is transfered to the attacker
+			// if defending country has 0 army, ownership is transfered to the attacker and can move his army
 			isConquered();
 		}
 		
@@ -185,6 +185,37 @@ void AttackPhase::isConquered() {
 		attacker->addCountry(defendingCountry);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;
 		cout << attackerName << " has conquered " << defendingCountry->getCountryName() << endl;
+
+		// move army after conquering defending country
+		cout << attackerName << ", do you want to move your army from " << attackingCountry->getCountryName()
+			<< " to " << defendingCountry->getCountryName() << "?" << endl;
+		string playerChoice;
+		cin >> playerChoice;
+		if (playerChoice == "yes") {
+			cout << attackingCountry->getCountryName() << " has an army of " << attackingCountry->getArmyNumber()
+				<< " and " << defendingCountry->getCountryName() << " has an army of " << defendingCountry->getArmyNumber() << endl;
+			cout << "How many armies do you want to move to " << defendingCountry->getCountryName() << "?" << endl;
+			while (true) {
+				int armySize = 0;
+				cin >> armySize;
+				if (armySize >= attackingCountry->getArmyNumber()) {
+					cout << "You need to keep at least one army on " << attackingCountry->getCountryName() << endl;
+				}
+				else {
+					int attackArmy = attackingCountry->getArmyNumber();
+					int defendArmy = defendingCountry->getArmyNumber();
+					attackingCountry->setArmyNumber(attackArmy - armySize);
+					defendingCountry->setArmyNumber(defendArmy + armySize);
+					cout << attackingCountry->getCountryName() << " has now " << attackingCountry->getArmyNumber() << endl;
+					cout << defendingCountry->getCountryName() << " has now " << defendingCountry->getArmyNumber() << endl;
+					break;
+				}
+			}
+			
+		}
+		else {
+			return;
+		}
 	}
 
 }
