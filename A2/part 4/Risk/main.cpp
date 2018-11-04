@@ -58,10 +58,10 @@ int main() {
 	Driver d;
 
 	//reinforce method for player David while having a few countries in possession
-	//d.reinforce(worldMap, David);
+	d.reinforce(worldMap, David);
 
 	//reinforce method for player John while having Australia as a continent value
-	//d.reinforce2(worldMap2, John);
+	d.reinforce2(worldMap2, John);
 
 	Hand h1;
 	h1.draw();
@@ -72,6 +72,7 @@ int main() {
 	h1.draw();
 	David.setHand(&h1);
 
+	//reinforce by trading cards
 	d.reinforce3(worldMap, David);
 
 	system("pause");
