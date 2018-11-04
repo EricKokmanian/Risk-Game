@@ -18,6 +18,10 @@ Player::Player(string playerName)
 
 }
 
+Player::~Player() {
+	delete dice;
+}
+
 void Player::addDice(Dice* newDice)
 {
 	dice = newDice;
@@ -31,6 +35,12 @@ void Player::addCountry(Country* country)
 vector<Country*>& Player::getCountries() {
 	return countries;
 }
+
+void Player::removeCountry(Country* country) {
+	countries.erase(remove(countries.begin(), countries.end(), country), countries.end());
+}
+
+
 
 //string Player::getCountries()
 //{
