@@ -13,6 +13,7 @@ public:
 	void moveArmy();
 	void selectFromCountry();
 	void selectToCountry();
+	void selectArmySize();
 
 
 

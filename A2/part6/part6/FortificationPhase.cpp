@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "FortificationPhase.h"
 
 using namespace std;
@@ -12,8 +13,18 @@ FortificationPhase::FortificationPhase(Player* player) {
 }
 
 void FortificationPhase::moveArmy() {
-	selectFromCountry();
-	selectToCountry();
+	cout << "Do you want to move an army from a country to another?" << endl;
+	string playerChoice = "";
+	cin >> playerChoice;
+	if (playerChoice == "yes") {
+		selectFromCountry();
+		selectToCountry();
+		selectArmySize();
+	}
+	else {
+		return;
+	}
+
 }
 
 void FortificationPhase::selectFromCountry() {
@@ -49,4 +60,24 @@ void FortificationPhase::selectToCountry() {
 	cin >> playerChoice;
 	toCountry = fromCountry->getAdjacentCountries()[playerChoice - 1];
 	cout << "You are moving armies from " << fromCountry->getCountryName() << " to " << toCountry->getCountryName() << endl;
+}
+
+void FortificationPhase::selectArmySize() {
+	cout << "How many armies do you want to move?" << endl;
+	while (true) {
+		int playerChoice = 0;
+		cin >> playerChoice;
+		if (playerChoice >= fromCountry->getArmyNumber()) {
+			cout << "Please keep at least one army left on " << fromCountry->getCountryName() << endl;
+		}
+		else {
+			int fromCountrySize = fromCountry->getArmyNumber();
+			int toCountrySize = toCountry->getArmyNumber();
+			fromCountry->setArmyNumber(fromCountrySize - playerChoice);
+			toCountry->setArmyNumber(toCountrySize + playerChoice);
+			cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << endl;
+			cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << endl;
+			break;
+		}
+	}
 }
