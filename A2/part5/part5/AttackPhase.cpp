@@ -21,18 +21,44 @@ void AttackPhase::attack() {
 	bool keepAttacking = true;
 	string playerAnswer = "";
 	while (keepAttacking) {
-		int i = 1;
+		int counter = 1;
 		cout << "Please enter the corresponding number of the country you want to attack with: " << endl;
-		for (auto it = attacker->getCountries().begin(); it != attacker->getCountries().end(); ++it) {
-			if ((*it)->getArmyNumber() > 1) {
-				cout << i << ". " << (*it)->getCountryName() << endl;
-				i++;
+		vector<Country*>::size_type size = attacker->getCountries().size();
+		for (vector<Country*>::size_type i = 0; i < size; ++i) {
+			cout << counter << ". " << attacker->getCountries()[i]->getCountryName()
+				<< "      with an army of " << attacker->getCountries()[i]->getArmyNumber() << endl;
+			counter++;
+		}
+		int playerChoice = 0;
+		cin >> playerChoice;
+		// player selects attacking country
+		attackingCountry = attacker->getCountries()[playerChoice - 1];
+		// search for enemy countries surrounding the selected attacking country
+		vector<Country*> defendingCountries;
+		for (auto it = attackingCountry->getAdjacentCountries().begin(); it != attackingCountry->getAdjacentCountries().end(); ++it) {
+			if ((*it)->getOwner() != attacker) {
+				defendingCountries.push_back((*it));
 			}
 		}
-		chooseCountry();
-		chooseDice();
-		rollingDice();
-		isConquered();
+		// if not enough army size
+		if (attackingCountry->getArmyNumber() < 2) {
+			cout << "You can only attack with a country of 2 or more armies." << endl;
+		}
+		// if there are no defending countries
+		else if (defendingCountries.size() == 0) {
+			cout << "There are no enemy countries surrounding " << attackingCountry->getCountryName() << endl;
+		}
+		else {
+			// attacker chooses which country to attack
+			chooseCountry();
+			// attacker and defender choose the number of dices to roll
+			chooseDice();
+			// game rolls the dices and declares the winner and reduces army sizes accordingly
+			rollingDice();
+			// if defending country has 0 army, ownership is transfered to the attacker
+			isConquered();
+		}
+		
 		cout << attacker->getName() << ", do you want to keep attacking?" << endl;
 		cin >> playerAnswer;
 		if (playerAnswer == "no") {
@@ -44,13 +70,13 @@ void AttackPhase::attack() {
 // player selects country to attack 
 void AttackPhase::chooseCountry() {
 	int playerChoice = 0;
-	cin >> playerChoice;
-	attackingCountry = attacker->getCountries()[playerChoice - 1];
+
 	cout << "You're gonna attack with " << attackingCountry->getCountryName() << endl;
 	cout << "Enter the corresponding number of the country you want to attack: " << endl;
 
 	int i = 1;
 	vector<Country*> defendingCountries;
+	// list all the countries that the attacker can attack
 	for (auto it = attackingCountry->getAdjacentCountries().begin(); it != attackingCountry->getAdjacentCountries().end(); ++it) {
 		if ((*it)->getOwner() != attacker) {
 			defendingCountries.push_back((*it));
@@ -58,6 +84,8 @@ void AttackPhase::chooseCountry() {
 			i++;
 		}
 	}
+
+	// attacker has chosen which country to attack, initialize variables
 	cin >> playerChoice;
 	defendingCountry = defendingCountries[playerChoice - 1];
 	defender = defendingCountry->getOwner();
@@ -104,9 +132,13 @@ void AttackPhase::chooseDice() {
 void AttackPhase::rollingDice() {
 	vector<int> attackDiceValues;
 	vector<int> defenseDiceValues;
+	attackerLost = 0;
+	defenderLost = 0;
 
+	// roll dices for both parties
 	attackDiceValues = attacker->getDice()->roll(numAttackDices);
 	defenseDiceValues = defender->getDice()->roll(numDefenseDices);
+	// sort the results in descending order
 	sort(attackDiceValues.rbegin(), attackDiceValues.rend());
 	sort(defenseDiceValues.rbegin(), defenseDiceValues.rend());
 
@@ -119,9 +151,9 @@ void AttackPhase::rollingDice() {
 	for (auto it = defenseDiceValues.begin(); it != defenseDiceValues.end(); ++it) {
 		cout << (*it) << " ";
 	}
-
+	// set the number of comparisons of dices
 	int compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
-
+	// compare the dice values and count the army losses for each party
 	for (int i = 0; i < compareCount; i++) {
 		if (attackDiceValues[i] > defenseDiceValues[i]) {
 			defenderLost++;
@@ -132,7 +164,7 @@ void AttackPhase::rollingDice() {
 	}
 	cout << "\nAttacker lost an army of " << attackerLost << endl;
 	cout << "Defender lost an army of " << defenderLost << endl;
-
+	// update the army values of the countries
 	attackingCountry->setArmyNumber(attackArmySize - attackerLost);
 	defendingCountry->setArmyNumber(defendArmySize - defenderLost);
 
@@ -144,6 +176,11 @@ void AttackPhase::rollingDice() {
 // check if defending country army size is 0 and change ownership of countries between players
 void AttackPhase::isConquered() {
 	if (defendingCountry->getArmyNumber() == 0) {
+		// transfer ownership of country
+		defendingCountry->setOwner(attacker);
+		// set the army size of newly conquered country to remaining attacking army
+		defendingCountry->setArmyNumber(numAttackDices - attackerLost);
+		attackingCountry->setArmyNumber(attackArmySize - defendingCountry->getArmyNumber());
 		defender->removeCountry(defendingCountry);
 		attacker->addCountry(defendingCountry);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;
