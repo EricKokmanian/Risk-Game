@@ -10,7 +10,7 @@ using namespace std;
 
 class Player;
 class Country {
-
+	
 public:
 	Country();
 	Country(string countryName);
