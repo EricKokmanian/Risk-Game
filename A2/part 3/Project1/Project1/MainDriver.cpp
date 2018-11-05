@@ -70,6 +70,11 @@ void main() {
 			fortificationP.moveArmy();
 			
 		}
+		cout << "---------------" << endl;
+		cout << "CONGRATULATIONS" << endl;
+		cout << "---------------" << endl;
+		cout << "--> Player " << p->getName() << " has WON! <--" << endl;
+		break;
 	}
 	system("pause");
 }
