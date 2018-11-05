@@ -1,0 +1,12 @@
+﻿  Continent.cpp
+  Country.cpp
+  Dice.cpp
+c:\users\mh_awad\source\repos\part2\part2\dice.cpp(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  GameEgnine.cpp
+  Map.cpp
+  Player.cpp
+  startupPhase.cpp
+c:\users\mh_awad\source\repos\part2\part2\startupphase.cpp(11): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+c:\users\mh_awad\source\repos\part2\part2\map.cpp(90): warning C4715: 'Map::ifConnectedContinent': not all control paths return a value
+LINK : fatal error LNK1561: entry point must be defined
