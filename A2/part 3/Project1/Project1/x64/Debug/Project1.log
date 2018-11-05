@@ -1,0 +1,18 @@
+﻿  AttackPhase.cpp
+c:\users\roger\desktop\github\risk-game\a2\part 3\project1\project1\attackphase.cpp(156): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Card.cpp
+  Continent.cpp
+  Country.cpp
+  Dice.cpp
+c:\users\roger\desktop\github\risk-game\a2\part 3\project1\project1\dice.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Driver.cpp
+  FortificationPhase.cpp
+  GameEngine.cpp
+  Hand.cpp
+  MainDriver.cpp
+c:\users\roger\desktop\github\risk-game\a2\part 3\project1\project1\maindriver.cpp(8): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Map.cpp
+c:\users\roger\desktop\github\risk-game\a2\part 3\project1\project1\map.cpp(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+  Generating Code...
+  Project1.vcxproj -> C:\Users\Roger\Desktop\Github\Risk-Game\A2\part 3\Project1\x64\Debug\Project1.exe

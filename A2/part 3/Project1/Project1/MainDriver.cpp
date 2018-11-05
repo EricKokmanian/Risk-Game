@@ -25,6 +25,13 @@ void main() {
 	worldMap.addCountry("USA", &USA);
 	worldMap.addCountry("Mexico", &Mexico);
 	worldMap.addCountry("France", &France);
+	Canada.addAdjacentCountry(&USA);
+	Canada.addAdjacentCountry(&France);
+	USA.addAdjacentCountry(&Canada);
+	USA.addAdjacentCountry(&Mexico);
+	Mexico.addAdjacentCountry(&USA);
+	France.addAdjacentCountry(&Canada);
+
 
 	//add countries to david
 	David.addCountry(&Canada);
@@ -33,9 +40,10 @@ void main() {
 	Canada.setOwner(&David);
 	Canada.setArmyNumber(3);
 	USA.setOwner(&David);
-	USA.setArmyNumber(2);
+	USA.setArmyNumber(3);
 	Mexico.setOwner(&David);
-	Mexico.setArmyNumber(1);
+	Mexico.setArmyNumber(3);
+
 
 	//add countries to John
 	France.setOwner(&John);
@@ -62,6 +70,7 @@ void main() {
 	system("pause");
 	AttackPhase attackP;
 	FortificationPhase fortificationP;
+
 
 	for (Player* p : players) {
 		while (worldMap.isWinner(p) != true) {

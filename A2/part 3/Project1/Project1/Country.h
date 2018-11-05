@@ -28,7 +28,7 @@ public:
 	Continent* getContinent();
 	void setContinent(Continent* continentName);
 	void addAdjacentCountry(Country* countryObject);
-	vector<Country*> getAdjacentCountries();
+	vector<Country*>& getAdjacentCountries();
 	void printAdjacentCountry();
 
 public:
