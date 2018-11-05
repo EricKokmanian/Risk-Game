@@ -184,6 +184,7 @@ void AttackPhase::isConquered() {
 		attackingCountry->setArmyNumber(attackArmySize - defendingCountry->getArmyNumber());
 		defender->removeCountry(defendingCountry);
 		attacker->addCountry(defendingCountry);
+		defendingCountry->setOwner(attacker);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;
 		cout << attackerName << " has conquered " << defendingCountry->getCountryName() << endl;
 
