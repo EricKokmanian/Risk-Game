@@ -6,12 +6,12 @@
 #include "Map.h"
 
 void main() {
+	// Setting up players and vector of players
 	vector<Player*> players;
 	Player David("David");
 	Player John("John");
 	players.push_back(&David);
 	players.push_back(&John);
-
 
 	//create countries
 	Country Canada("Canada");
@@ -43,23 +43,6 @@ void main() {
 	France.setArmyNumber(1);
 
 	Driver d;
-
-	//reinforce method for player David while having a few countries in possession
-	//d.reinforce(worldMap, David);
-
-	Hand h1;
-	h1.draw();
-	h1.draw();
-	h1.draw();
-	h1.draw();
-	h1.draw();
-	h1.draw();
-	David.setHand(&h1);
-
-	//reinforce by trading cards
-	//d.reinforce3(worldMap, David);
-
-	system("pause");
 	AttackPhase attackP;
 	FortificationPhase fortificationP;
 
@@ -67,7 +50,7 @@ void main() {
 		while (worldMap.isWinner(p) != true) {
 		
 			// call reinforcement phase
-
+			d.reinforce(worldMap, *p);
 			
 			// call attack phase
 			attackP.setPlayer(p);
@@ -79,5 +62,5 @@ void main() {
 			
 		}
 	}
-	
+	system("pause");
 }
