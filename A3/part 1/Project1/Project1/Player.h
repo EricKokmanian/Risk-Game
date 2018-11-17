@@ -48,3 +48,4 @@ public:
 	Dice* dice;
 
 };
+
