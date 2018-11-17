@@ -50,7 +50,7 @@ Player* Country::getOwner() {
 }
 
 string Country::getOwnerName() {
-	return owner->name;
+	return owner->getName();
 }
 
 void Country::setOwner(Player* player) {

@@ -8,6 +8,7 @@ using namespace std;
 #include "Map.h"
 #include <algorithm>
 #include <vector>
+#include "Strategy.h"
 
 
 Player::Player()
@@ -245,3 +246,14 @@ Strategy* Player::getStrategy() {
 	return this->strategy;
 }
 
+void Player::executeReinforce(Map worldmap, Player* player) {
+	this->strategy->reinforce(worldmap, player);
+}
+
+void Player::executeAttack(Player* player) {
+	this->strategy->attack(player);
+}
+
+void Player::executeFortify(Player* player) {
+	this->strategy->fortify(player);
+}

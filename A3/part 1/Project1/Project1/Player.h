@@ -9,6 +9,8 @@
 #include "Map.h"
 
 class Country;
+class Strategy;
+class Map;
 
 using namespace std;
 
@@ -37,6 +39,10 @@ public:
 	int exchange();
 	void setStrategy(Strategy*);
 	Strategy* getStrategy();
+	void executeReinforce(Map, Player*);
+	void executeAttack(Player*);
+	void executeFortify(Player*);
+
 
 private:
 	Strategy* strategy;

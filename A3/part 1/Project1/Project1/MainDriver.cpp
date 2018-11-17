@@ -4,6 +4,9 @@
 #include "AttackPhase.h"
 #include "FortificationPhase.h"
 #include "Map.h"
+#include "ConcreteStrategy1.h"
+#include "ConcreteStrategy2.h"
+#include "Strategy.h"
 
 void main() {
 	// Setting up players and vector of players
@@ -62,20 +65,36 @@ void main() {
 			string strat;
 			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Custom): " << endl;
 			cin >> strat;
-			// p.setStrategy(strat);
 
-			// call reinforcement phase
-			d.reinforce(worldMap, *p);
+			if (strat == "Aggressive" || strat == "aggressive") {
+				//ConcreteStrategy1* cs1 = new ConcreteStrategy1();
+				//p->setStrategy(cs1);
+				//p.executeReinforce();
+				//p.executeAttack();
+				//p.executeFortify();
+			}
+			else if (strat == "Passive" || strat == "passive") {
+				ConcreteStrategy2* cs2 = new ConcreteStrategy2();
+				p->setStrategy(cs2);
+				p->executeReinforce(worldMap, p);
+				p->executeAttack(p);
+				p->executeFortify(p);
+			}
+			else {
+				// call reinforcement phase
+				d.reinforce(worldMap, *p);
 
-			// call attack phase
-			attackP.setPlayer(p);
-			attackP.attack();
+				// call attack phase
+				attackP.setPlayer(p);
+				attackP.attack();
 
-			// call fortification phase
-			fortificationP.setPlayer(p);
-			fortificationP.moveArmy();
+				// call fortification phase
+				fortificationP.setPlayer(p);
+				fortificationP.moveArmy();
+			}
 
 		}
+
 		cout << "---------------" << endl;
 		cout << "CONGRATULATIONS" << endl;
 		cout << "---------------" << endl;
