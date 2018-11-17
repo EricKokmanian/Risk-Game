@@ -57,7 +57,10 @@ void main() {
 
 	for (Player* p : players) {
 		while (worldMap.isWinner(p) != true) {
-		
+			
+			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
+			// p.setStrategy(Strategy s);
+
 			// call reinforcement phase
 			d.reinforce(worldMap, *p);
 			
