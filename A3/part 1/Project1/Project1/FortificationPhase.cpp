@@ -79,8 +79,8 @@ void FortificationPhase::selectArmySize() {
 			int toCountrySize = toCountry->getArmyNumber();
 			fromCountry->setArmyNumber(fromCountrySize - playerChoice);
 			toCountry->setArmyNumber(toCountrySize + playerChoice);
-			cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << endl;
-			cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << endl;
+			cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << " armies." << endl;
+			cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << " armies." << endl;
 			break;
 		}
 	}

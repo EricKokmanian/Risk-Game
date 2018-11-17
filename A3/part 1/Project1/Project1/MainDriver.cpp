@@ -41,11 +41,11 @@ void main() {
 	David.addCountry(&USA);
 	David.addCountry(&Mexico);
 	Canada.setOwner(&David);
-	Canada.setArmyNumber(3);
+	Canada.setArmyNumber(10);
 	USA.setOwner(&David);
-	USA.setArmyNumber(3);
+	USA.setArmyNumber(6);
 	Mexico.setOwner(&David);
-	Mexico.setArmyNumber(3);
+	Mexico.setArmyNumber(1);
 
 
 	//add countries to John
@@ -76,6 +76,7 @@ void main() {
 			else if (strat == "Passive" || strat == "passive") {
 				ConcreteStrategy2* cs2 = new ConcreteStrategy2();
 				p->setStrategy(cs2);
+				cout << "PAssive strategy adopted" << endl;
 				p->executeReinforce(worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
