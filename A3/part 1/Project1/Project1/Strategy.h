@@ -6,8 +6,8 @@ using namespace std;
 class Strategy {
 public:
 	Strategy();
-	//virtual void reinforce() = 0;
-	//virtual void attack() = 0;
-	//virtual	void fortify() = 0;
+	//virtual void reinforce(Map, Player*) = 0;
+	//virtual void attack(Player*) = 0;
+	//virtual void fortify(Player*) = 0;
 private:
 };

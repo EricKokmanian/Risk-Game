@@ -59,7 +59,10 @@ void main() {
 		while (worldMap.isWinner(p) != true) {
 
 			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
-			// p.setStrategy(Strategy s);
+			string strat;
+			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Custom): " << endl;
+			cin >> strat;
+			// p.setStrategy(strat);
 
 			// call reinforcement phase
 			d.reinforce(worldMap, *p);

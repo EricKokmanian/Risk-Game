@@ -35,9 +35,11 @@ public:
 	void attack() {};
 	void fortify() {};
 	int exchange();
+	void setStrategy(Strategy*);
+	Strategy* getStrategy();
 
-
-public:
+private:
+	Strategy* strategy;
 	string name;
 	vector<Country*> countries;
 	vector<string> countries_names;

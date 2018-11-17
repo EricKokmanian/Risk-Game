@@ -237,3 +237,11 @@ void Player::setPlayerName(string playerName) {
 	name = playerName;
 }
 
+void Player::setStrategy(Strategy* strat) {
+	this->strategy = strat;
+}
+
+Strategy* Player::getStrategy() {
+	return this->strategy;
+}
+
