@@ -185,8 +185,6 @@ void AttackPhase::isConquered() {
 		// transfer ownership of country
 		map->setOwner(defendingCountry, attacker);
 		// set the army size of newly conquered country to remaining attacking army
-		/*defendingCountry->setArmyNumber(numAttackDices - attackerLost);
-		attackingCountry->setArmyNumber(attackArmySize - defendingCountry->getArmyNumber());*/
 		defender->removeCountry(defendingCountry);
 		attacker->addCountry(defendingCountry);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;

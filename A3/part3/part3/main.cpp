@@ -6,6 +6,7 @@
 using namespace std;
 
 int main() {
+	//creating map, players, and countries
 	Map worldMap;
 	Player Bob;
 	Bob.setPlayerName("Bob");
@@ -32,6 +33,7 @@ int main() {
 	Italy.addAdjacentCountry(&France);
 	Germany.addAdjacentCountry(&France);
 
+	//assigning players to countries
 	worldMap.setOwner(&Canada, &Bob);
 	worldMap.setOwner(&Italy, &Bob);
 	worldMap.setOwner(&USA, &Bob);
@@ -39,16 +41,10 @@ int main() {
 	worldMap.setOwner(&France, &Alice);
 	worldMap.setOwner(&Germany, &Alice);
 
-	/*Canada.setOwner(&Bob);
-	Italy.setOwner(&Bob);
-	USA.setOwner(&Bob);
-	Mexico.setOwner(&Alice);
-	France.setOwner(&Alice);
-	Germany.setOwner(&Alice);*/
-
 	//set observer
 	Graph graph(&worldMap);
 
+	//assigning countries to players
 	Bob.addCountry(&Canada);
 	Bob.addCountry(&Italy);
 	Bob.addCountry(&USA);
@@ -64,8 +60,8 @@ int main() {
 	Germany.setArmyNumber(2);
 
 	GameEngine gameEngine;
-	// gameEngine.declareAttack(&Bob);
 
+	//attack phase
 	AttackPhase attackPhase(&worldMap);
 	attackPhase.setPlayer(&Bob);
 	attackPhase.attack();
