@@ -78,10 +78,6 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 					maxArmy = (*it)->getArmyNumber();
 					maxArmies = (*it);
 				}
-				else {
-				//	cout << "(else)" << endl;
-				//	maxArmies = countries.at(0);
-				}
 			}
 			//player selects attacking country
 		
@@ -241,22 +237,14 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 					}
 				}
 			}
-			
-
-		//	attack1.attack();
 
 			if (maxArmies->getArmyNumber() < 2 || defendingCountries.size() == 0)
 			{
 				cout << " You have no more armies left to attack on your strongest country " << maxArmies << " attacking phase will end." << endl;
 				keppAttacking = false;
 			}
-		}
-
-		
+		}	
 	}
-
-	
-
 
 	void  ConcreteStrategy1::fortify(Player* player) {
 
@@ -291,10 +279,6 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 					max = (*it)->getArmyNumber();
 					strongest = (*it);
 				}
-				else {
-				//	cout << "(else)" << endl;
-				//	strongest = countries.at(0);
-				}
 			}
 
 
@@ -307,9 +291,7 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 					min = (*it)->getArmyNumber();
 					weakest = (*it);
 				}
-			//	else {
-					//if ((*it) != strongest)
-				//	weakest = countries.at(1);
+
 				}
 
 				
