@@ -1,0 +1,13 @@
+﻿  AttackPhase.cpp
+  Country.cpp
+  Driver.cpp
+  FortificationPhase.cpp
+  GameEngine.cpp
+  MainDriver.cpp
+c:\users\roger\desktop\project1\maindriver.cpp(8): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Map.cpp
+c:\users\roger\desktop\project1\map.cpp(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+c:\users\roger\desktop\project1\player.cpp(95): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  part 2.vcxproj -> C:\Users\Roger\Desktop\Github\Risk-Game\A3\part 2\Debug\part 2.exe
