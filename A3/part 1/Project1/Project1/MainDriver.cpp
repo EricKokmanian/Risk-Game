@@ -67,11 +67,12 @@ void main() {
 			cin >> strat;
 
 			if (strat == "Aggressive" || strat == "aggressive") {
-				//ConcreteStrategy1* cs1 = new ConcreteStrategy1();
-				//p->setStrategy(cs1);
-				//p.executeReinforce();
-				//p.executeAttack();
-				//p.executeFortify();
+				ConcreteStrategy1* cs1 = new ConcreteStrategy1();
+				p->setStrategy(cs1);
+				cout << "Agressive strategy adopted" << endl;
+				p->executeReinforce(worldMap, p);
+				p->executeAttack(p);
+				p->executeFortify(p);
 			}
 			else if (strat == "Passive" || strat == "passive") {
 				ConcreteStrategy2* cs2 = new ConcreteStrategy2();
