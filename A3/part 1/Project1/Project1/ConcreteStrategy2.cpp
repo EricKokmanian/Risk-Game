@@ -35,8 +35,8 @@ void ConcreteStrategy2::reinforce(Map worldmap, Player* player) {
 				minArmies = (*it);
 			}
 			else {
-				cout << "(else)" << endl;
-				minArmies = countries.at(0);
+				/*cout << "(else)" << endl;
+				minArmies = countries.at(0);*/
 			}				
 		}
 
@@ -87,21 +87,18 @@ void ConcreteStrategy2::fortify(Player* player) {
 				strongest = (*it);
 			}
 			else {
-				cout << "(else)" << endl;
-				strongest = countries.at(0);
+				/*cout << "(else)" << endl;
+				strongest = countries.at(0);*/
 			}
 		}
+	
+		fromCountry = strongest;
 
-		while (true) {
-			fromCountry = strongest;
-			if (fromCountry->getArmyNumber() < 2) {
-				cout << "Please choose a country where there is an army of 2 or more." << endl;
-			}
-			else {
-				cout << "You're gonna move armies from " << fromCountry->getCountryName() << endl;
-				break;
-			}
+		if (fromCountry->getArmyNumber() < 2) {
+			cout << "Please choose a country where there is an army of 2 or more." << endl;
 		}
+		else
+			cout << "You're gonna move armies from " << fromCountry->getCountryName() << endl;		
 
 		/*Select To Country*/
 		int j = 1;
@@ -113,8 +110,8 @@ void ConcreteStrategy2::fortify(Player* player) {
 				min = (*it)->getArmyNumber();
 				weakest = (*it);
 			}
-			else
-				weakest = countries.at(0);
+			//else
+				//weakest = countries.at(0);
 		}
 
 		toCountry = weakest;

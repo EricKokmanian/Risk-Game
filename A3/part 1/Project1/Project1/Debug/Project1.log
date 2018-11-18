@@ -1,2 +1,21 @@
-﻿  ConcreteStrategy2.cpp
+﻿  AttackPhase.cpp
+  Card.cpp
+  ConcreteStrategy1.cpp
+  ConcreteStrategy2.cpp
+  Continent.cpp
+  Country.cpp
+  Dice.cpp
+c:\users\erick_000\documents\github\risk-game\a3\part 1\project1\project1\dice.cpp(19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Driver.cpp
+  FortificationPhase.cpp
+  GameEngine.cpp
+  Hand.cpp
+  MainDriver.cpp
+c:\users\erick_000\documents\github\risk-game\a3\part 1\project1\project1\maindriver.cpp(11): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Map.cpp
+c:\users\erick_000\documents\github\risk-game\a3\part 1\project1\project1\map.cpp(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+c:\users\erick_000\documents\github\risk-game\a3\part 1\project1\project1\player.cpp(96): warning C4018: '<': signed/unsigned mismatch
+  Strategy.cpp
+  Generating Code...
   Project1.vcxproj -> C:\Users\erick_000\Documents\GitHub\Risk-Game\A3\part 1\Project1\Debug\Project1.exe
