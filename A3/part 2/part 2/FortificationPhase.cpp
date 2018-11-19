@@ -32,6 +32,7 @@ void FortificationPhase::moveArmy() {
 		selectToCountry();
 		selectArmySize();
 		fortifying = false;
+		return;
 	}
 	else {
 		fortifying = false;
@@ -66,12 +67,15 @@ void FortificationPhase::selectToCountry() {
 	cout << "Please enter the corresponding number of the country you want to move armies to: " << endl;
 	int i = 1;
 	for (auto it = fromCountry->getAdjacentCountries().begin(); it != fromCountry->getAdjacentCountries().end(); ++it) {
-		cout << i << ". " << (*it)->getCountryName() << " with an army of " << (*it)->getArmyNumber() << endl;
-		i++;
+		if ((*it)->getOwner() == player) {
+			toCountries.push_back(*it);
+			cout << i << ". " << (*it)->getCountryName() << " with an army of " << (*it)->getArmyNumber() << endl;
+			i++;
+		}
 	}
 	int playerChoice = 0;
 	cin >> playerChoice;
-	toCountry = fromCountry->getAdjacentCountries()[playerChoice - 1];
+	toCountry = toCountries[playerChoice - 1];
 	cout << "You are moving armies from " << fromCountry->getCountryName() << " to " << toCountry->getCountryName() << endl;
 }
 
@@ -84,10 +88,14 @@ void FortificationPhase::selectArmySize() {
 			cout << "Please keep at least one army left on " << fromCountry->getCountryName() << endl;
 		}
 		else {
+			system("pause");
+			system("CLS");
+			
 			int fromCountrySize = fromCountry->getArmyNumber();
 			int toCountrySize = toCountry->getArmyNumber();
 			fromCountry->setArmyNumber(fromCountrySize - playerChoice);
 			toCountry->setArmyNumber(toCountrySize + playerChoice);
+			Notify();
 			cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << endl;
 			cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << endl;
 			break;

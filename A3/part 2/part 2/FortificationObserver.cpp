@@ -21,8 +21,14 @@ void FortificationObserver::Update() {
 
 void FortificationObserver::display() {
 	if (fortificationPhase->fortifying) {
-		cout << " =================== FORTIFICATION PHASE IS STARTING ================== \n" << endl;
+		cout << " ================================ FORTIFICATION PHASE =============================== \n" << endl;
 		cout << fortificationPhase->getPlayer()->getName() << " IS STARTING TO FORTIFY.\n" << endl;
+		cout << "Countries owned: " << endl;
+		for (auto it = fortificationPhase->getPlayer()->getCountries().begin(); it != fortificationPhase->getPlayer()->getCountries().end(); ++it) {
+			cout << "- " << (*it)->getCountryName() << " with " << (*it)->getArmyNumber() << " armies." << endl;
+		}
+		cout << " ================================ FORTIFICATION PHASE =============================== \n" << endl;
+
 	}
 
 }

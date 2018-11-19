@@ -69,7 +69,7 @@ int main() {
 			// p.setStrategy(Strategy s);
 
 			// call reinforcement phase
-			//d.reinforce(worldMap, p);
+			d.reinforce(worldMap, p);
 
 			// call attack phase
 			attackP.setPlayer(p);

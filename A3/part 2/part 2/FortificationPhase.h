@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "Player.h"
 #include "Country.h"
 #include "Continent.h"
@@ -24,5 +25,6 @@ private:
 	Player* player;
 	Country* fromCountry;
 	Country* toCountry;
+	vector<Country*> toCountries;
 
 };

@@ -223,11 +223,12 @@ void AttackPhase::isConquered() {
 				else {
 					system("pause");
 					system("CLS");
-					Notify();
 					int attackArmy = attackingCountry->getArmyNumber();
 					int defendArmy = defendingCountry->getArmyNumber();
 					attackingCountry->setArmyNumber(attackArmy - armySize);
 					defendingCountry->setArmyNumber(defendArmy + armySize);
+					Notify();
+
 					cout << attackingCountry->getCountryName() << " has now " << attackingCountry->getArmyNumber() << endl;
 					cout << defendingCountry->getCountryName() << " has now " << defendingCountry->getArmyNumber() << endl;
 					break;
