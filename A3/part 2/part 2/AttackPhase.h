@@ -3,10 +3,11 @@
 #include "GameEngine.h"
 #include "Player.h"
 #include "Dice.h"
+#include "Subject.h"
 
 using namespace std;
 
-class AttackPhase {
+class AttackPhase: public Subject {
 public:
 	AttackPhase();
 	void setPlayer(Player*);
@@ -15,8 +16,16 @@ public:
 	void chooseDice();
 	void rollingDice();
 	void isConquered();
+	string getAttackerName();
+	string getDefenderName();
+	Player* getAttacker();
+	Player* getDefender();
+	int getAttackArmySize();
+	int getDefendArmySize();
+	bool keepAttacking;
 
 private:
+
 	Player* attacker;
 	Player* defender;
 	// player names

@@ -4,8 +4,11 @@
 #include "AttackPhase.h"
 #include "FortificationPhase.h"
 #include "Map.h"
+#include "AttackObserver.h"
+#include "FortificationObserver.h"
+#include "ReinforcementObserver.h"
 
-void main() {
+int main() {
 	// Setting up players and vector of players
 	vector<Player*> players;
 	Player David("David");
@@ -53,6 +56,10 @@ void main() {
 	Driver d;
 	AttackPhase attackP;
 	FortificationPhase fortificationP;
+	
+	ReinforcementObserver reinforceObs(&d);
+	AttackObserver attackObs(&attackP);
+	FortificationObserver fortificationObs(&fortificationP);
 
 
 	for (Player* p : players) {
@@ -62,7 +69,7 @@ void main() {
 			// p.setStrategy(Strategy s);
 
 			// call reinforcement phase
-			d.reinforce(worldMap, *p);
+			d.reinforce(worldMap, p);
 			
 			// call attack phase
 			attackP.setPlayer(p);

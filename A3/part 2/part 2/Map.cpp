@@ -15,12 +15,12 @@ void Map::addCountry(string countryName, Country* countryObject) {
 	worldMap[countryName] = countryObject;
 }
 
-int Map::getNumberOfCountries(Player player)
+int Map::getNumberOfCountries(Player* player)
 {
 	int countriesOwned = 0;
 	for (auto& x : worldMap)
 	{
-		if (x.second->getOwnerName() == player.getName()) {
+		if (x.second->getOwnerName() == player->getName()) {
 			countriesOwned++;
 		}
 	}

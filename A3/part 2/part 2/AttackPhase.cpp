@@ -11,6 +11,7 @@ AttackPhase::AttackPhase() {
 	numDefenseDices = 0;
 	attackerLost = 0;
 	defenderLost = 0;
+	keepAttacking = false;
 }
 
 void AttackPhase::setPlayer(Player* player) {
@@ -19,9 +20,10 @@ void AttackPhase::setPlayer(Player* player) {
 
 // starts and ends the attack phase
 void AttackPhase::attack() {
-	bool keepAttacking = true;
+	keepAttacking = true;
 	string playerAnswer = "";
 	while (keepAttacking) {
+		Notify();
 		int counter = 1;
 		cout << "Please enter the corresponding number of the country you want to attack with: " << endl;
 		vector<Country*>::size_type size = attacker->getCountries().size();
@@ -153,7 +155,7 @@ void AttackPhase::rollingDice() {
 		cout << (*it) << " ";
 	}
 	// set the number of comparisons of dices
-	int compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
+	size_t compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
 	// compare the dice values and count the army losses for each party
 	for (int i = 0; i < compareCount; i++) {
 		if (attackDiceValues[i] > defenseDiceValues[i]) {
@@ -220,4 +222,34 @@ void AttackPhase::isConquered() {
 		}
 	}
 
+}
+
+string AttackPhase::getAttackerName()
+{
+	return attackerName;
+}
+
+string AttackPhase::getDefenderName()
+{
+	return defenderName;
+}
+
+Player * AttackPhase::getAttacker()
+{
+	return attacker;
+}
+
+Player * AttackPhase::getDefender()
+{
+	return defender;
+}
+
+int AttackPhase::getAttackArmySize()
+{
+	return attackArmySize;
+}
+
+int AttackPhase::getDefendArmySize()
+{
+	return defendArmySize;
 }

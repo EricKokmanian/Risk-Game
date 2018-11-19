@@ -18,6 +18,43 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AttackObserver.cpp" />
+    <ClCompile Include="AttackPhase.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Continent.cpp" />
+    <ClCompile Include="Country.cpp" />
+    <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="FortificationObserver.cpp" />
+    <ClCompile Include="FortificationPhase.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="MainDriver.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ReinforcementObserver.cpp" />
+    <ClCompile Include="Subject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AttackObserver.h" />
+    <ClInclude Include="AttackPhase.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="Continent.h" />
+    <ClInclude Include="Country.h" />
+    <ClInclude Include="Dice.h" />
+    <ClInclude Include="Driver.h" />
+    <ClInclude Include="FortificationObserver.h" />
+    <ClInclude Include="FortificationPhase.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="Hand.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ReinforcementObserver.h" />
+    <ClInclude Include="Subject.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B6B454CD-0D29-400E-AC19-58BE988130EE}</ProjectGuid>
@@ -114,33 +151,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\Project1\AttackPhase.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Card.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Continent.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Country.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Dice.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Driver.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\FortificationPhase.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\GameEngine.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Hand.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Map.h" />
-    <ClInclude Include="..\..\..\..\..\Project1\Player.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Project1\AttackPhase.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Card.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Continent.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Country.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Dice.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Driver.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\FortificationPhase.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\GameEngine.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Hand.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\MainDriver.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Map.cpp" />
-    <ClCompile Include="..\..\..\..\..\Project1\Player.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

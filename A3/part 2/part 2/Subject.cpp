@@ -2,9 +2,11 @@
 #include "Subject.h"
 
 Subject::Subject() {
+
 }
 
 Subject::~Subject() {
+
 }
 
 void Subject::Attach(Observer* o) {
@@ -17,6 +19,6 @@ void Subject::Detach(Observer* o) {
 
 void Subject::Notify() {
 	for (auto it = observers.begin(); it != observers.end(); ++it) {
-		(*it).Update();
+		(*it)->Update();
 	}
 }

@@ -8,12 +8,13 @@ class Observer;
 class Subject {
 
 	public:
+		Subject();
+		~Subject();
 		virtual void Attach(Observer* o);
 		virtual void Detach(Observer* o);
 		virtual void Notify();
-		Subject();
-		~Subject();
+
 
 	private:
 		list<Observer*> observers;
-}
+};

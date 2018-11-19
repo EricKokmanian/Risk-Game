@@ -5,18 +5,25 @@
 using namespace std;
 
 FortificationPhase::FortificationPhase() {
-
+	fortifying = true;
 }
 
 FortificationPhase::FortificationPhase(Player* player) {
 	this->player = player;
+	fortifying = true;
 }
 
 void FortificationPhase::setPlayer(Player* player) {
 	this->player = player;
 }
 
+Player * FortificationPhase::getPlayer()
+{
+	return player;
+}
+
 void FortificationPhase::moveArmy() {
+	Notify();
 	cout << "Do you want to move an army from a country to another?" << endl;
 	string playerChoice = "";
 	cin >> playerChoice;
@@ -24,8 +31,10 @@ void FortificationPhase::moveArmy() {
 		selectFromCountry();
 		selectToCountry();
 		selectArmySize();
+		fortifying = false;
 	}
 	else {
+		fortifying = false;
 		return;
 	}
 

@@ -10,7 +10,7 @@ class Map {
 public:
 	Map();
 	void addCountry(string, Country*);
-	int getNumberOfCountries(Player player);
+	int getNumberOfCountries(Player* player);
 	Country* getCountry(string country);
 	unordered_map<string, Country*> getMap() { return worldMap; }
 	bool isWinner(Player*);

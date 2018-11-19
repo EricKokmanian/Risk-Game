@@ -1,3 +1,5 @@
+#include <iostream>
+#include <string>
 #include "Driver.h"
 #include "Player.h"
 #include <sstream>
@@ -5,6 +7,7 @@ using namespace std;
 
 Driver::Driver()
 {
+	reinforcing = true;
 }
 
 
@@ -16,8 +19,16 @@ void Driver::start()
 {
 }
 
-void Driver::reinforce(Map worldmap, Player player)
+Player* Driver::getPlayer() {
+	return player;
+}
+
+
+void Driver::reinforce(Map worldmap, Player* player)
 {
+	reinforcing = true;
+	this->player = player;
+	Notify();
 	int x = worldmap.getNumberOfCountries(player);
 	if (x < 3) {
 		x = 3;
@@ -25,29 +36,28 @@ void Driver::reinforce(Map worldmap, Player player)
 
 	string name;
 	cout << "NUMBER OF COUNTRIES BY DAVID:" << x << endl;
-	cout << "Here are the countries owned by David :" << player.getCountries(1) << endl << "You have " << x << " armies to place." << endl;
+	cout << "Here are the countries owned by David :" << player->getCountries(1) << endl << "You have " << x << " armies to place." << endl;
 	for (int a = 0;a < x; a++) {
 		cout << "Please enter a country from that list (case-sensitive) where you would like to place 1 army." << endl;
 		cin >> name;
 		worldmap.getCountry(name)->addArmy(1);
 		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(name)->getCountryName() << " : " << worldmap.getCountry(name)->getArmyNumber() << endl;
 	}
-
-	cout << "-------- END OF REINFORCE 1 ---------" << endl;
+	reinforcing = false;
 
 }
 
-void Driver::reinforce2(Map worldmap, Player player)
+void Driver::reinforce2(Map worldmap, Player* player)
 {
 	int x = worldmap.getNumberOfCountries(player);
 	if (x < 3) {
 		x = 3;
 	}
-	x += player.ifOwnContinent();
+	x += (*player).ifOwnContinent();
 
 	string name;
 	cout << "NUMBER OF COUNTRIES BY JOHN:" << x << endl;
-	cout << "Here are the countries owned by John :" << player.getCountries(1) << endl << "You have " << x << " armies to place." << endl;
+	cout << "Here are the countries owned by John :" << player->getCountries(1) << endl << "You have " << x << " armies to place." << endl;
 	for (int a = 0;a < x; a++) {
 		cout << "Please enter a country from that list (case-sensitive) where you would like to place 1 army." << endl;
 		cin >> name;
