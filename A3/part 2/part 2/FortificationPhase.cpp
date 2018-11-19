@@ -23,6 +23,7 @@ Player * FortificationPhase::getPlayer()
 }
 
 void FortificationPhase::moveArmy() {
+	system("CLS");
 	Notify();
 	cout << "Do you want to move an army from a country to another?" << endl;
 	string playerChoice = "";
