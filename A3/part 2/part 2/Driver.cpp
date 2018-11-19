@@ -28,20 +28,22 @@ void Driver::reinforce(Map worldmap, Player* player)
 {
 	reinforcing = true;
 	this->player = player;
-	Notify();
 	int x = worldmap.getNumberOfCountries(player);
 	if (x < 3) {
 		x = 3;
 	}
 
 	string name;
-	cout << "NUMBER OF COUNTRIES BY DAVID:" << x << endl;
-	cout << "Here are the countries owned by David :" << player->getCountries(1) << endl << "You have " << x << " armies to place." << endl;
+	
 	for (int a = 0;a < x; a++) {
-		cout << "Please enter a country from that list (case-sensitive) where you would like to place 1 army." << endl;
+		Notify();
+		cout << "\nPlease enter a country from that list (case-sensitive) where you would like to place 1 army." << endl;
 		cin >> name;
 		worldmap.getCountry(name)->addArmy(1);
 		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(name)->getCountryName() << " : " << worldmap.getCountry(name)->getArmyNumber() << endl;
+		cout << "ARMIES LEFT TO PLACE: " << x - a -1  << endl;
+		system("pause");
+		system("CLS");
 	}
 	reinforcing = false;
 

@@ -56,21 +56,21 @@ int main() {
 	Driver d;
 	AttackPhase attackP;
 	FortificationPhase fortificationP;
-	
+
 	ReinforcementObserver reinforceObs(&d);
 	AttackObserver attackObs(&attackP);
 	FortificationObserver fortificationObs(&fortificationP);
 
 
-	for (Player* p : players) {
-		while (worldMap.isWinner(p) != true) {
-			
+	while (true) {
+		for (Player* p : players) {
+
 			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
 			// p.setStrategy(Strategy s);
 
 			// call reinforcement phase
-			d.reinforce(worldMap, p);
-			
+			//d.reinforce(worldMap, p);
+
 			// call attack phase
 			attackP.setPlayer(p);
 			attackP.attack();
@@ -78,13 +78,16 @@ int main() {
 			// call fortification phase
 			fortificationP.setPlayer(p);
 			fortificationP.moveArmy();
-			
+			if (worldMap.isWinner(p) == true) {
+				cout << "---------------" << endl;
+				cout << "CONGRATULATIONS" << endl;
+				cout << "---------------" << endl;
+				cout << "--> Player " << p->getName() << " has WON! <--" << endl;
+				system("pause");
+				return 0;
+			}
+
 		}
-		cout << "---------------" << endl;
-		cout << "CONGRATULATIONS" << endl;
-		cout << "---------------" << endl;
-		cout << "--> Player " << p->getName() << " has WON! <--" << endl;
-		break;
+
 	}
-	system("pause");
 }

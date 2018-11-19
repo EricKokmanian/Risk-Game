@@ -12,6 +12,8 @@ AttackPhase::AttackPhase() {
 	attackerLost = 0;
 	defenderLost = 0;
 	keepAttacking = false;
+	attacker = NULL;
+	defender = NULL;
 }
 
 void AttackPhase::setPlayer(Player* player) {
@@ -24,6 +26,7 @@ void AttackPhase::attack() {
 	string playerAnswer = "";
 	while (keepAttacking) {
 		Notify();
+
 		int counter = 1;
 		cout << "Please enter the corresponding number of the country you want to attack with: " << endl;
 		vector<Country*>::size_type size = attacker->getCountries().size();
@@ -96,6 +99,11 @@ void AttackPhase::chooseCountry() {
 	defendArmySize = defendingCountry->getArmyNumber();
 	attackerName = attacker->getName();
 	defenderName = defender->getName();
+	
+	system("pause");
+	system("CLS"); 
+	Notify();
+	
 }
 
 // setup the dices to be rolled
@@ -173,12 +181,16 @@ void AttackPhase::rollingDice() {
 
 	cout << "\nAttacker: " << attackingCountry->getCountryName() << " has " << attackingCountry->getArmyNumber() << " armies left." << endl;
 	cout << "Defender: " << defendingCountry->getCountryName() << " has " << defendingCountry->getArmyNumber() << " armies left." << endl;
+	system("pause");
+	system("CLS");
+	Notify();
 
 }
 
 // check if defending country army size is 0 and change ownership of countries between players
 void AttackPhase::isConquered() {
 	if (defendingCountry->getArmyNumber() == 0) {
+		
 		// transfer ownership of country
 		defendingCountry->setOwner(attacker);
 		// set the army size of newly conquered country to remaining attacking army
@@ -186,10 +198,13 @@ void AttackPhase::isConquered() {
 		attackingCountry->setArmyNumber(attackArmySize - defendingCountry->getArmyNumber());
 		defender->removeCountry(defendingCountry);
 		attacker->addCountry(defendingCountry);
+		defender = NULL;
 		defendingCountry->setOwner(attacker);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;
 		cout << attackerName << " has conquered " << defendingCountry->getCountryName() << endl;
-
+		system("pause");
+		system("CLS");
+		Notify();
 		// move army after conquering defending country
 		cout << attackerName << ", do you want to move your army from " << attackingCountry->getCountryName()
 			<< " to " << defendingCountry->getCountryName() << "?" << endl;
@@ -206,6 +221,9 @@ void AttackPhase::isConquered() {
 					cout << "You need to keep at least one army on " << attackingCountry->getCountryName() << endl;
 				}
 				else {
+					system("pause");
+					system("CLS");
+					Notify();
 					int attackArmy = attackingCountry->getArmyNumber();
 					int defendArmy = defendingCountry->getArmyNumber();
 					attackingCountry->setArmyNumber(attackArmy - armySize);
