@@ -73,6 +73,7 @@ void main() {
 				p->executeReinforce(worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
+				//delete dynamic pointers
 			}
 			else if (strat == "Passive" || strat == "passive") {
 				ConcreteStrategy2* cs2 = new ConcreteStrategy2();

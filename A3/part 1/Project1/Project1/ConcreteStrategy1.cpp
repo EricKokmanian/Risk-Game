@@ -34,7 +34,6 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 				maxArmies = (*it);
 			}
 			else {
-				cout << "(else)" << endl;
 				maxArmies = countries.at(0);
 			}
 		}
