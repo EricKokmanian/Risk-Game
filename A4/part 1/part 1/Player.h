@@ -39,7 +39,7 @@ public:
 	int exchange();
 	void setStrategy(Strategy*);
 	Strategy* getStrategy();
-	void executeReinforce(Map, Player*);
+	void executeReinforce(Map*, Player*);
 	void executeAttack(Player*);
 	void executeFortify(Player*);
 

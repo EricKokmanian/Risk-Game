@@ -57,6 +57,9 @@
     <ClInclude Include="Strategy.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConcreteStrategy3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Hand.cpp">
@@ -102,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Strategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConcreteStrategy3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

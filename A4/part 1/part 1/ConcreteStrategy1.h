@@ -10,10 +10,9 @@ using namespace std;
 class ConcreteStrategy1 : public Strategy {
 public:
 	ConcreteStrategy1();
-	void reinforce(Map, Player*);
+	void reinforce(Map*, Player*);
 	void attack(Player*);
 	void fortify(Player*);
-	void chooseCountry();
 private:
 	Country * attackingCountry;
 	Country* defendingCountry;

@@ -9,7 +9,7 @@ using namespace std;
 class ConcreteStrategy2 : public Strategy {
 	public:
 		ConcreteStrategy2();
-		void reinforce(Map, Player*);
+		void reinforce(Map*, Player*);
 		void attack(Player*);
 		void fortify(Player*);
 	private:

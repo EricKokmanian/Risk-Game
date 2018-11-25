@@ -25,7 +25,7 @@ int Map::getNumberOfCountries(Player player)
 		}
 	}
 	double value = countriesOwned / 3;
-	int newValue = floor(value);
+	double newValue = floor(value);
 	return newValue;
 }
 

@@ -153,7 +153,7 @@ void AttackPhase::rollingDice() {
 		cout << (*it) << " ";
 	}
 	// set the number of comparisons of dices
-	int compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
+	size_t compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
 	// compare the dice values and count the army losses for each party
 	for (int i = 0; i < compareCount; i++) {
 		if (attackDiceValues[i] > defenseDiceValues[i]) {

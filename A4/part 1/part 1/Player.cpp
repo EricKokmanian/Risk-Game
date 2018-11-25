@@ -246,7 +246,7 @@ Strategy* Player::getStrategy() {
 	return this->strategy;
 }
 
-void Player::executeReinforce(Map worldmap, Player* player) {
+void Player::executeReinforce(Map* worldmap, Player* player) {
 	this->strategy->reinforce(worldmap, player);
 }
 

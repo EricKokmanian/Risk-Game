@@ -121,6 +121,7 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="ConcreteStrategy1.h" />
     <ClInclude Include="ConcreteStrategy2.h" />
+    <ClInclude Include="ConcreteStrategy3.h" />
     <ClInclude Include="Continent.h" />
     <ClInclude Include="Country.h" />
     <ClInclude Include="Dice.h" />
@@ -137,6 +138,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="ConcreteStrategy1.cpp" />
     <ClCompile Include="ConcreteStrategy2.cpp" />
+    <ClCompile Include="ConcreteStrategy3.cpp" />
     <ClCompile Include="Continent.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="Dice.cpp" />

@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "ConcreteStrategy1.h"
 #include "ConcreteStrategy2.h"
+#include "ConcreteStrategy3.h"
 #include "Strategy.h"
 
 int main() {
@@ -57,32 +58,41 @@ int main() {
 	AttackPhase attackP;
 	FortificationPhase fortificationP;
 
-
-	for (Player* p : players) {
-		while (worldMap.isWinner(p) != true) {
+	while(true){
+		for (Player* p : players) {
 
 			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
 			string strat;
-			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Custom): " << endl;
+			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Random, Custom): " << endl;
 			cin >> strat;
 
 			if (strat == "Aggressive" || strat == "aggressive") {
 				ConcreteStrategy1* cs1 = new ConcreteStrategy1();
 				p->setStrategy(cs1);
 				cout << "Agressive strategy adopted" << endl;
-				p->executeReinforce(worldMap, p);
+				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
+				delete p;
 				//delete dynamic pointers
 			}
 			else if (strat == "Passive" || strat == "passive") {
 				ConcreteStrategy2* cs2 = new ConcreteStrategy2();
 				p->setStrategy(cs2);
 				cout << "PAssive strategy adopted" << endl;
-				p->executeReinforce(worldMap, p);
+				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
+				delete p;
 			}
+			else if (strat == "Random" || strat == "random") {
+				ConcreteStrategy3 cs3;
+				p->setStrategy(&cs3);
+				cout << "Random strategy adopted" << endl;
+				p->executeReinforce(&worldMap, p);
+
+			}
+
 			else {
 				// call reinforcement phase
 				d.reinforce(worldMap, *p);
@@ -96,13 +106,16 @@ int main() {
 				fortificationP.moveArmy();
 			}
 
-		}
+		
+			if (worldMap.isWinner(p) != true) {
 
-		cout << "---------------" << endl;
-		cout << "CONGRATULATIONS" << endl;
-		cout << "---------------" << endl;
-		cout << "--> Player " << p->getName() << " has WON! <--" << endl;
-		break;
+				cout << "---------------" << endl;
+				cout << "CONGRATULATIONS" << endl;
+				cout << "---------------" << endl;
+				cout << "--> Player " << p->getName() << " has WON! <--" << endl;
+				break;
+			}
+		}
+		system("pause");
 	}
-	system("pause");
 }

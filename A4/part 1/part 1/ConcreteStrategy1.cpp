@@ -9,9 +9,8 @@ using namespace std;
 ConcreteStrategy1::ConcreteStrategy1() {
 
 }
-
-void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
-	int x = worldmap.getNumberOfCountries(*player);
+void ConcreteStrategy1::reinforce(Map* worldmap, Player* player) {
+	int x = worldmap->getNumberOfCountries(*player);
 	if (x < 3) {
 		x = 3;
 	}
@@ -40,7 +39,7 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 
 		cout << maxArmies->getCountryName() << " has just been reinforced with 1 army since it was your strongest country." << endl;
 		maxArmies->addArmy(1);
-		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(maxArmies->getCountryName())->getCountryName() << " : " << worldmap.getCountry(maxArmies->getCountryName())->getArmyNumber() << endl;
+		cout << "NUMBER OF ARMIES OF " << worldmap->getCountry(maxArmies->getCountryName())->getCountryName() << " : " << worldmap->getCountry(maxArmies->getCountryName())->getArmyNumber() << endl;
 
 		cout << "       -------- END OF REINFORCEMENT PHASE ---------\n" << endl;
 	}
@@ -172,7 +171,7 @@ void ConcreteStrategy1::reinforce(Map worldmap, Player* player) {
 					cout << (*it) << " ";
 				}
 				// set the number of comparisons of dices
-				int compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
+				size_t compareCount = min(attackDiceValues.size(), defenseDiceValues.size());
 				// compare the dice values and count the army losses for each party
 				for (int i = 0; i < compareCount; i++) {
 					if (attackDiceValues[i] > defenseDiceValues[i]) {

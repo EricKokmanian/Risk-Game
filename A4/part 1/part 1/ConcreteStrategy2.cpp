@@ -10,8 +10,8 @@ ConcreteStrategy2::ConcreteStrategy2() {
 
 }
 
-void ConcreteStrategy2::reinforce(Map worldmap, Player* player) {
-	int x = worldmap.getNumberOfCountries(*player);
+void ConcreteStrategy2::reinforce(Map* worldmap, Player* player) {
+	int x = worldmap->getNumberOfCountries(*player);
 	
 	if (x < 3) {
 		x = 3;
@@ -42,7 +42,7 @@ void ConcreteStrategy2::reinforce(Map worldmap, Player* player) {
 
 		cout << minArmies->getCountryName() << " has just been reinforced with 1 army since it was your weakest country." << endl;
 		minArmies->addArmy(1);
-		cout << "NUMBER OF ARMIES OF " << worldmap.getCountry(minArmies->getCountryName())->getCountryName() << " : " << worldmap.getCountry(minArmies->getCountryName())->getArmyNumber() << endl;
+		cout << "NUMBER OF ARMIES OF " << worldmap->getCountry(minArmies->getCountryName())->getCountryName() << " : " << worldmap->getCountry(minArmies->getCountryName())->getArmyNumber() << endl;
 	}
 
 	cout << "       -------- END OF REINFORCEMENT PHASE ---------\n" << endl;
