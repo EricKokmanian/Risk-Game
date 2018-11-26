@@ -73,7 +73,7 @@ int main() {
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
-				delete p;
+				delete cs1;
 				//delete dynamic pointers
 			}
 			else if (strat == "Passive" || strat == "passive") {
@@ -83,7 +83,7 @@ int main() {
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
 				p->executeFortify(p);
-				delete p;
+				delete cs2;
 			}
 			else if (strat == "Random" || strat == "random") {
 				ConcreteStrategy3 cs3;
@@ -108,7 +108,7 @@ int main() {
 			}
 
 		
-			if (worldMap.isWinner(p) != true) {
+			if (worldMap.isWinner(p) == true) {
 
 				cout << "---------------" << endl;
 				cout << "CONGRATULATIONS" << endl;
@@ -118,5 +118,6 @@ int main() {
 			}
 		}
 		system("pause");
+		break;
 	}
 }
