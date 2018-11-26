@@ -15,6 +15,8 @@ public:
 	void fortify(Player*);
 
 private:
+	vector<Country*> defenderCountries;
+	vector<Country*> attackerCountries;
 	Country* attackingCountry;
 	Country* defendingCountry;
 	Player* attacker;

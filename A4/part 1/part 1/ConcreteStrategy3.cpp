@@ -42,10 +42,28 @@ void ConcreteStrategy3::reinforce(Map* map, Player* player) {
 }
 
 void ConcreteStrategy3::attack(Player* player) {
+	attacker = player;
 	srand(time(0));
-	int numberOfAttack = 
-}
+	// limiting attacks to 10 or upper limit would be infinite
+	int numberOfAttack = rand() % 11;
+	cout << "\n-------------START OF ATTACK PHASE-------------\n" << endl;
 
+	// display countries of attacker
+	cout << attacker->getName() << ", these are your countries: " << endl;
+	for (auto it = player->getCountries().begin(); it != player->getCountries().end(); ++it) {
+		cout << "- " << (*it)->getCountryName() << " with army values of " << (*it)->getArmyNumber() << endl;
+		if ((*it)->getArmyNumber() > 1) {
+			attackerCountries.push_back(*it);
+		}
+	}
+
+	// randomly choose attacking country
+	
+
+	for (int i = 0; i < numberOfAttack; i++) {
+
+	}
+}
 void ConcreteStrategy3::fortify(Player* player) {
 
 }

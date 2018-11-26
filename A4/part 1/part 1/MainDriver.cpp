@@ -90,6 +90,7 @@ int main() {
 				p->setStrategy(&cs3);
 				cout << "Random strategy adopted" << endl;
 				p->executeReinforce(&worldMap, p);
+				p->executeAttack(p);
 
 			}
 
