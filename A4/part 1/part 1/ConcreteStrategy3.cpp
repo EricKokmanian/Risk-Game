@@ -29,6 +29,7 @@ void ConcreteStrategy3::reinforce(Map* map, Player* player) {
 	for (auto it = countries.begin(); it != countries.end(); ++it) {
 		cout << "- " << (*it)->getCountryName() << " with armies value of " << (*it)->getArmyNumber() << endl;
 	}
+	system("pause");
 
 	cout << "\nThere are " << x << " armies to place." << endl;
 
@@ -37,10 +38,11 @@ void ConcreteStrategy3::reinforce(Map* map, Player* player) {
 	countries[value]->setArmyNumber(countries[value]->getArmyNumber() + x);
 
 	cout << countries[value]->getCountryName() << " has just been reinforced randomly." << endl;
-	cout << "NUMBER OF ARMIES OF " << map->getCountry(countries[value]->getCountryName())->getCountryName() << " : " << map->getCountry(countries[value]->getCountryName())->getArmyNumber() << endl;
+	cout << "NUMBER OF ARMIES OF " << countries[value]->getCountryName() << " : " << countries[value]->getArmyNumber() << endl;
 
 	cout << "\n       -------- END OF REINFORCEMENT PHASE ---------\n" << endl;
-	
+	system("pause");
+
 }
 
 void ConcreteStrategy3::attack(Player* player) {
@@ -48,7 +50,7 @@ void ConcreteStrategy3::attack(Player* player) {
 	srand(time(0));
 	// limiting attacks to 10 or upper limit would be infinite
 	int numberOfAttack = rand() % 11;
-	cout << "\n-------------START OF ATTACK PHASE-------------\n" << endl;
+	cout << "\n-------------START OF ATTACK PHASE-------------\n\n" << endl;
 
 	// display countries of attacker
 	cout << attacker->getName() << ", these are your countries: " << endl;
@@ -58,6 +60,7 @@ void ConcreteStrategy3::attack(Player* player) {
 			attackerCountries.push_back(*it);
 		}
 	}
+	system("pause");
 
 	while (true) {
 		// randomly selects attacking country
@@ -80,36 +83,46 @@ void ConcreteStrategy3::attack(Player* player) {
 		}
 		else {
 			// attacker chooses which country to attack
+			keepAttacking = true;
 			chooseCountry();
-			// attacker and defender choose the number of dices to roll
-			chooseDice();
-			// game rolls the dices and declares the winner and reduces army sizes accordingly
-			rollingDice();
-			// if defending country has 0 army, ownership is transfered to the attacker and can move his army
-			isConquered();
-
-			break;
+			for (int i = 0; i < numberOfAttack; i++) {
+				cout << "\nTHIS IS ATTACK " << i + 1 << "/" << numberOfAttack;
+				// attacker and defender choose the number of dices to roll
+				chooseDice();
+				// game rolls the dices and declares the winner and reduces army sizes accordingly
+				rollingDice();
+				// if defending country has 0 army, ownership is transfered to the attacker and can move his army
+				isConquered();
+				if (keepAttacking == false) {
+					return;
+				}
+			}
+			return;
 		}
 	}
 }
 
 void ConcreteStrategy3::chooseCountry() {
 	cout << "You're gonna attack with " << attackingCountry->getCountryName() << endl;
+	system("pause");
+
 	srand(time(0));
 	int randomCountryIndex = rand() % defenderCountries.size();
 	
 	defendingCountry = defenderCountries[randomCountryIndex];
 	defender = defendingCountry->getOwner();
 	cout << defendingCountry->getCountryName() << " has been randomly chosen as the target country" << endl;
+	system("pause");
 }
 
 void ConcreteStrategy3::chooseDice(){
 	attackArmySize = attackingCountry->getArmyNumber();
 	defendArmySize = defendingCountry->getArmyNumber();
-	cout << "============" << attackingCountry->getCountryName() << " OWNED BY " << attacker->getName() << " IS ATTACKING "
-		<< defendingCountry->getCountryName() << " OWNED BY " << defender->getName() << "============" << endl;
+	cout << "\n============" << attackingCountry->getCountryName() << " OWNED BY " << attacker->getName() << " IS ATTACKING "
+		<< defendingCountry->getCountryName() << " OWNED BY " << defender->getName() << "============\n" << endl;
 	cout << "Attacker: " << attackingCountry->getCountryName() << " has an army of " << attackArmySize << endl;
 	cout << "Defender: " << defendingCountry->getCountryName() << " has an army of " << defendArmySize << endl;
+	system("pause");
 
 	attackerName = attackingCountry->getOwnerName();
 	defenderName = defendingCountry->getOwnerName();
@@ -123,6 +136,11 @@ void ConcreteStrategy3::chooseDice(){
 		cout << attackerName << ", you are attacking with 2 dices" << endl;
 		numAttackDices = 2;
 		system("pause");
+	}
+	else if (attackArmySize < 2) {
+		cout << "You can't attack anymore" << endl;
+		keepAttacking = false;
+		return;
 	}
 	else {
 		cout << attackerName << ", you are attacking with 3 dices" << endl;
@@ -147,6 +165,9 @@ void ConcreteStrategy3::rollingDice() {
 	vector<int> defenseDiceValues;
 	attackerLost = 0;
 	defenderLost = 0;
+	if (keepAttacking == false) {
+		return;
+	}
 
 	// roll dices for both parties
 	attackDiceValues = attacker->getDice()->roll(numAttackDices);
@@ -180,6 +201,7 @@ void ConcreteStrategy3::rollingDice() {
 	// update the army values of the countries
 	attackingCountry->setArmyNumber(attackArmySize - attackerLost);
 	defendingCountry->setArmyNumber(defendArmySize - defenderLost);
+	system("pause");
 
 	cout << "\nAttacker: " << attackingCountry->getCountryName() << " has " << attackingCountry->getArmyNumber() << " armies left." << endl;
 	cout << "Defender: " << defendingCountry->getCountryName() << " has " << defendingCountry->getArmyNumber() << " armies left." << endl;
@@ -197,10 +219,57 @@ void ConcreteStrategy3::isConquered() {
 		defendingCountry->setOwner(attacker);
 		cout << defenderName << " has lost " << defendingCountry->getCountryName() << endl;
 		cout << attackerName << " has conquered " << defendingCountry->getCountryName() << endl;
+		keepAttacking = false;
+		system("pause");
 	}
 }
 
 
 void ConcreteStrategy3::fortify(Player* player) {
+	vector<Country*> fortifyFromCountry;
+	vector<Country*> fortifyToCountry = player->getCountries();
+	cout << "\n------------------- START OF FORTIFICATION PHASE --------------------\n " << endl;
+
+	cout << "These are the countries you can fortify from (at least 2 armies): " << endl;
+	for (auto it = player->getCountries().begin(); it != player->getCountries().end(); ++it) {
+		if ((*it)->getArmyNumber() > 1) {
+			cout << " -" << (*it)->getCountryName() << " with an army of " << (*it)->getArmyNumber() << endl;
+			fortifyFromCountry.push_back(*it);
+		}
+	}
+	system("pause");
+
+	srand(time(0));
+	int randomFromCountryIndex = rand() % fortifyFromCountry.size();
+	fromCountry = fortifyFromCountry[randomFromCountryIndex];
+	if (fortifyFromCountry.size() == 1) {
+		cout << "You only have one country, so you can't fortify" << endl;
+		cout << "\n------------------- END OF FORTIFICATION PHASE --------------------\n " << endl;
+		return;
+	}
+	cout << "You're gonna move armies from " << fromCountry->getCountryName() << endl;		
+	system("pause");
+
+	while (true) {
+		srand(time(0));
+		int randomToCountryIndex = rand() % fortifyFromCountry.size();
+		if (fortifyToCountry[randomToCountryIndex]->getCountryName() != fromCountry->getCountryName()) {
+			toCountry = fortifyToCountry[randomToCountryIndex];
+			cout << "You're gonna move armies to " << toCountry->getCountryName() << endl;
+			break;
+		}
+	}
+
+	srand(time(0));
+	int valueToFortify = rand() % fromCountry->getArmyNumber();
+	cout << "Random number of armies to fortify with is: " << valueToFortify << endl;
+	int fromCountrySize = fromCountry->getArmyNumber();
+	int toCountrySize = toCountry->getArmyNumber();
+	fromCountry->setArmyNumber(fromCountrySize - valueToFortify);
+	toCountry->setArmyNumber(toCountrySize + valueToFortify);
+	cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << endl;
+	cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << endl;
+	cout << "\n------------------- END OF FORTIFICATION PHASE --------------------\n " << endl;
+	system("pause");
 
 }

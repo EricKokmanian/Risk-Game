@@ -33,5 +33,8 @@ private:
 	string defenderName;
 	int attackerLost;
 	int defenderLost;
+	Country* fromCountry;
+	Country* toCountry;
+	bool keepAttacking;
 };
 

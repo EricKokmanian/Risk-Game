@@ -22,6 +22,7 @@ int main() {
 	Country USA("USA");
 	Country Mexico("Mexico");
 	Country France("France");
+	Country Italy("Italy");
 
 	//create maps and assign countries to map
 	Map worldMap;
@@ -35,24 +36,30 @@ int main() {
 	USA.addAdjacentCountry(&Mexico);
 	Mexico.addAdjacentCountry(&USA);
 	France.addAdjacentCountry(&Canada);
+	Italy.addAdjacentCountry(&Italy);
 
 
 	//add countries to david
 	David.addCountry(&Canada);
 	David.addCountry(&USA);
-	David.addCountry(&Mexico);
 	Canada.setOwner(&David);
 	Canada.setArmyNumber(10);
 	USA.setOwner(&David);
 	USA.setArmyNumber(6);
-	Mexico.setOwner(&David);
-	Mexico.setArmyNumber(1);
+
+	Italy.setOwner(&David);
+	David.addCountry(&Italy);
+	Italy.setArmyNumber(3);
 
 
 	//add countries to John
 	France.setOwner(&John);
 	John.addCountry(&France);
 	France.setArmyNumber(1);
+	John.addCountry(&Mexico);
+	Mexico.setOwner(&John);
+	Mexico.setArmyNumber(1);
+
 
 	Driver d;
 	AttackPhase attackP;
@@ -91,6 +98,7 @@ int main() {
 				cout << "Random strategy adopted" << endl;
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
+				p->executeFortify(p);
 
 			}
 
@@ -118,6 +126,5 @@ int main() {
 			}
 		}
 		system("pause");
-		break;
 	}
 }
