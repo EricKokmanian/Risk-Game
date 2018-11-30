@@ -7,12 +7,14 @@ using namespace std;
 Country::Country() {
 	name = "";
 	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
 Country::Country(string countryName) {
 	name = countryName;
 	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
@@ -20,6 +22,7 @@ Country::Country(string countryName, Player* player) {
 	name = countryName;
 	owner = player;
 	armyNumber = 0;
+	visited = false;
 	continent = NULL;
 }
 
@@ -27,6 +30,7 @@ Country::Country(string countryName, Player* player, int number) {
 	name = countryName;
 	owner = player;
 	armyNumber = number;
+	visited = false;
 	continent = NULL;
 }
 
@@ -34,6 +38,7 @@ Country::Country(string countryName, Player* player, int number, Continent* cont
 	name = countryName;
 	owner = player;
 	armyNumber = number;
+	visited = false;
 	continent = continentName;
 }
 
@@ -55,6 +60,14 @@ string Country::getOwnerName() {
 
 void Country::setOwner(Player* player) {
 	owner = player;
+}
+
+bool Country::getVisited() {
+	return visited;
+}
+
+void Country::setVisited(bool value) {
+	visited = value;
 }
 
 int Country::getArmyNumber() {

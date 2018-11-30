@@ -42,6 +42,8 @@ public:
 	void executeReinforce(Map*, Player*);
 	void executeAttack(Player*);
 	void executeFortify(Player*);
+	void setNbrOfWins();
+	int getNbrOfWins();
 
 
 private:
@@ -51,6 +53,7 @@ private:
 	vector<string> countries_names;
 	vector<Continent> continents;
 	int numberOfArmy;
+	int nbrofWins;
 	int id;
 	Hand* hand;
 	Dice* dice;

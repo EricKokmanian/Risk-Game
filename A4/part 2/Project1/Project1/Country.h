@@ -22,6 +22,8 @@ public:
 	string getOwnerName();
 	Player* getOwner();
 	void setOwner(Player* player);
+	bool getVisited();
+	void setVisited(bool);
 	int getArmyNumber();
 	void setArmyNumber(int number);
 	void addArmy(int number);
@@ -33,6 +35,7 @@ public:
 
 public:
 	string name;
+	bool visited;
 	Player* owner;
 	int armyNumber = 0;
 	Continent* continent;
