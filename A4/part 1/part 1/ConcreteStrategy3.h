@@ -12,7 +12,7 @@ public:
 	~ConcreteStrategy3();
 	void reinforce(Map*, Player*);
 	void attack(Player*);
-	void fortify(Player*);
+	void fortify(Map,Player*);
 	void chooseCountry();
 	void chooseDice();
 	void rollingDice();

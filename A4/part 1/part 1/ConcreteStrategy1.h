@@ -12,7 +12,7 @@ public:
 	ConcreteStrategy1();
 	void reinforce(Map*, Player*);
 	void attack(Player*);
-	void fortify(Player*);
+	void fortify(Map,Player*);
 private:
 	Country * attackingCountry;
 	Country* defendingCountry;

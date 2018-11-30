@@ -41,7 +41,7 @@ public:
 	Strategy* getStrategy();
 	void executeReinforce(Map*, Player*);
 	void executeAttack(Player*);
-	void executeFortify(Player*);
+	void executeFortify(Map,Player*);
 
 
 private:

@@ -13,6 +13,6 @@ class Strategy {
 		Strategy();
 		virtual void reinforce(Map* map, Player* pl) = 0;
 		virtual void attack(Player*) = 0;
-		virtual void fortify(Player*) = 0;
+		virtual void fortify(Map,Player*) = 0;
 	private:
 };

@@ -7,6 +7,7 @@
 #include "ConcreteStrategy1.h"
 #include "ConcreteStrategy2.h"
 #include "ConcreteStrategy3.h"
+#include "ConcreteStrategy4.h"
 #include "Strategy.h"
 
 int main() {
@@ -23,6 +24,8 @@ int main() {
 	Country Mexico("Mexico");
 	Country France("France");
 	Country Italy("Italy");
+	Country Germany("Germany");
+	Country Brazil("Brazil");
 
 	//create maps and assign countries to map
 	Map worldMap;
@@ -30,6 +33,10 @@ int main() {
 	worldMap.addCountry("USA", &USA);
 	worldMap.addCountry("Mexico", &Mexico);
 	worldMap.addCountry("France", &France);
+	worldMap.addCountry("Brazil", &Brazil);
+	worldMap.addCountry("Germany", &Germany);
+	Germany.addAdjacentCountry(&France);
+	Brazil.addAdjacentCountry(&Mexico);
 	Canada.addAdjacentCountry(&USA);
 	Canada.addAdjacentCountry(&France);
 	USA.addAdjacentCountry(&Canada);
@@ -46,6 +53,8 @@ int main() {
 	Canada.setArmyNumber(10);
 	USA.setOwner(&David);
 	USA.setArmyNumber(6);
+	Mexico.setOwner(&David);
+	Mexico.setArmyNumber(1);
 
 	Italy.setOwner(&David);
 	David.addCountry(&Italy);
@@ -59,6 +68,12 @@ int main() {
 	John.addCountry(&Mexico);
 	Mexico.setOwner(&John);
 	Mexico.setArmyNumber(1);
+	Germany.setOwner(&John);
+	Brazil.setOwner(&John);
+	John.addCountry(&Germany);
+	John.addCountry(&Brazil);
+	Germany.setArmyNumber(3);
+	Brazil.setArmyNumber(4);
 
 
 	Driver d;
@@ -70,7 +85,7 @@ int main() {
 
 			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
 			string strat;
-			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Random, Custom): " << endl;
+			cout << "What strategy do you wish to adopt (ie. Aggressive, Passive, Random, Custom, Cheater): " << endl;
 			cin >> strat;
 
 			if (strat == "Aggressive" || strat == "aggressive") {
@@ -79,7 +94,7 @@ int main() {
 				cout << "Agressive strategy adopted" << endl;
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
-				p->executeFortify(p);
+				p->executeFortify(worldMap,p);
 				delete cs1;
 				//delete dynamic pointers
 			}
@@ -89,7 +104,7 @@ int main() {
 				cout << "PAssive strategy adopted" << endl;
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
-				p->executeFortify(p);
+				p->executeFortify(worldMap,p);
 				delete cs2;
 			}
 			else if (strat == "Random" || strat == "random") {
@@ -98,7 +113,16 @@ int main() {
 				cout << "Random strategy adopted" << endl;
 				p->executeReinforce(&worldMap, p);
 				p->executeAttack(p);
-				p->executeFortify(p);
+				p->executeFortify(worldMap,p);
+
+			}
+			else if (strat == "Cheater" || strat == "cheater") {
+				ConcreteStrategy4 cs4;
+				p->setStrategy(&cs4);
+				cout << "Cheater strategy adopted" << endl;
+				p->executeReinforce(&worldMap, p);
+				p->executeAttack(p);
+				p->executeFortify(worldMap, p);
 
 			}
 

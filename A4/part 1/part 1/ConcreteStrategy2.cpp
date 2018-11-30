@@ -53,7 +53,7 @@ void ConcreteStrategy2::attack(Player* player) {
 	cout << "       --------    END OF ATTACK PHASE     ---------\n" << endl;
 }
 
-void ConcreteStrategy2::fortify(Player* player) {
+void ConcreteStrategy2::fortify(Map worldMap,Player* player) {
 	Country* fromCountry = NULL;
 	Country* strongest = NULL; // country with most armies
 	int max = 0; // nbr of armies in strongest country

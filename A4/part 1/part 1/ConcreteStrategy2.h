@@ -11,7 +11,7 @@ class ConcreteStrategy2 : public Strategy {
 		ConcreteStrategy2();
 		void reinforce(Map*, Player*);
 		void attack(Player*);
-		void fortify(Player*);
+		void fortify(Map,Player*);
 	private:
 
 };

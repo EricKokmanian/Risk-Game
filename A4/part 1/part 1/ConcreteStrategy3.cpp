@@ -225,7 +225,7 @@ void ConcreteStrategy3::isConquered() {
 }
 
 
-void ConcreteStrategy3::fortify(Player* player) {
+void ConcreteStrategy3::fortify(Map worldMap,Player* player) {
 	vector<Country*> fortifyFromCountry;
 	vector<Country*> fortifyToCountry = player->getCountries();
 	cout << "\n------------------- START OF FORTIFICATION PHASE --------------------\n " << endl;

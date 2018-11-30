@@ -244,7 +244,7 @@ void ConcreteStrategy1::reinforce(Map* worldmap, Player* player) {
 		}	
 	}
 
-	void  ConcreteStrategy1::fortify(Player* player) {
+	void  ConcreteStrategy1::fortify(Map,Player* player) {
 
 		Country* fromCountry = NULL;
 		Country* strongest = NULL; // country with most armies

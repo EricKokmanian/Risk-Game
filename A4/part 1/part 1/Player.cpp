@@ -254,6 +254,6 @@ void Player::executeAttack(Player* player) {
 	this->strategy->attack(player);
 }
 
-void Player::executeFortify(Player* player) {
-	this->strategy->fortify(player);
+void Player::executeFortify(Map worldMap, Player* player) {
+	this->strategy->fortify(worldMap,player);
 }
