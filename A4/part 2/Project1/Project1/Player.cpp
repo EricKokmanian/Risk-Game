@@ -16,12 +16,14 @@ Player::Player()
 	id = 1;
 	name = "";
 	numberOfArmy = 0;
+	nbrofWins = 0;
 
 }
 
 Player::Player(string playerName)
 {
 	name = playerName;
+	nbrofWins = 0;
 
 }
 
@@ -30,6 +32,7 @@ Player::Player(int id, string name)
 	this->id = id;
 	this->name = name;
 	numberOfArmy = 0;
+	nbrofWins = 0;
 }
 
 void Player::addDice(Dice* newDice)
@@ -70,6 +73,14 @@ string Player::getCountries(int i)
 	}
 	string s = ss.str();
 	return s;
+}
+
+void Player::setNbrOfWins() {
+	nbrofWins++;
+}
+
+int Player::getNbrOfWins() {
+	return nbrofWins;
 }
 
 void Player::setHand(Hand* h)
