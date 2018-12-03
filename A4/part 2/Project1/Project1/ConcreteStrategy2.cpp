@@ -60,11 +60,12 @@ void ConcreteStrategy2::fortify(Player* player) {
 	Country* weakest = NULL; // country with the least armies
 	int min = 0; // nbr of armies in weakest country
 	Country* toCountry = NULL;
-
-	cout << "Do you want to move an army from a country to another?" << endl;
 	string playerChoice = "";
-	cin >> playerChoice;
-
+	if (tournament == false) {
+		cout << "Do you want to move an army from a country to another?" << endl;
+		cin >> playerChoice;
+	}
+	playerChoice = "yes";
 	if (playerChoice == "yes") {
 		vector <Country*> countries = player->getCountries();
 
@@ -111,29 +112,42 @@ void ConcreteStrategy2::fortify(Player* player) {
 				weakest = (*it);
 			}
 			//else
-				//weakest = countries.at(0);
+			//weakest = countries.at(0);
 		}
 
 		toCountry = weakest;
 		cout << "You are moving armies from " << fromCountry->getCountryName() << " (strongest country) to " << toCountry->getCountryName() << " (weakest country)." << endl;
 
 		/*Select army size*/
-		cout << "How many armies do you want to move?" << endl;
-		while (true) {
-			int playerChoice = 0;
-			cin >> playerChoice;
-			if (playerChoice >= fromCountry->getArmyNumber()) {
-				cout << "Please keep at least one army left on " << fromCountry->getCountryName() << endl;
+		if (tournament == false) {
+			cout << "How many armies do you want to move?" << endl;
+			while (true) {
+				int playerChoice = 0;
+				cin >> playerChoice;
+				if (playerChoice >= fromCountry->getArmyNumber()) {
+					cout << "Please keep at least one army left on " << fromCountry->getCountryName() << endl;
+				}
+				else {
+					int fromCountrySize = fromCountry->getArmyNumber();
+					int toCountrySize = toCountry->getArmyNumber();
+					fromCountry->setArmyNumber(fromCountrySize - playerChoice);
+					toCountry->setArmyNumber(toCountrySize + playerChoice);
+					cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << " armies." << endl;
+					cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << " armies." << endl;
+					break;
+				}
 			}
-			else {
-				int fromCountrySize = fromCountry->getArmyNumber();
-				int toCountrySize = toCountry->getArmyNumber();
-				fromCountry->setArmyNumber(fromCountrySize - playerChoice);
-				toCountry->setArmyNumber(toCountrySize + playerChoice);
+		}
+		else {
+			if (fromCountry->getArmyNumber() > 1) {
+				cout << " Moving 1 army " << endl;
+				fromCountry->setArmyNumber(fromCountry->getArmyNumber() - 1);
+				toCountry->setArmyNumber(toCountry->getArmyNumber() + 1);
 				cout << fromCountry->getCountryName() << " has now " << fromCountry->getArmyNumber() << " armies." << endl;
 				cout << toCountry->getCountryName() << " has now " << toCountry->getArmyNumber() << " armies." << endl;
-				break;
-			}
+			}else
+			cout << " Not enough armies to move anywhere!" << endl;
+
 		}
 	}
 
