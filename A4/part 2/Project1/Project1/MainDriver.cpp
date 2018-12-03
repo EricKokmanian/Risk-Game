@@ -31,9 +31,9 @@ int main() {
 
 	//create maps and assign countries to map
 	Map* worldMap = NULL;
-	
 
-	int mode; 
+
+	int mode;
 	int maps;
 	vector<string> names;
 	string name;
@@ -50,38 +50,38 @@ int main() {
 	/* Single mode */
 	if (mode == 1) {
 		//worldMap->addCountry("Canada", &Canada);
-	//worldMap->addCountry("USA", &USA);
-	//worldMap->addCountry("Mexico", &Mexico);
-	//worldMap->addCountry("France", &France);
-	//Canada.addAdjacentCountry(&USA);
-	//Canada.addAdjacentCountry(&France);
-	//USA.addAdjacentCountry(&Canada);
-	//USA.addAdjacentCountry(&Mexico);
-	//Mexico.addAdjacentCountry(&USA);
-	//France.addAdjacentCountry(&Canada);
-	//Italy.addAdjacentCountry(&Italy);
+		//worldMap->addCountry("USA", &USA);
+		//worldMap->addCountry("Mexico", &Mexico);
+		//worldMap->addCountry("France", &France);
+		//Canada.addAdjacentCountry(&USA);
+		//Canada.addAdjacentCountry(&France);
+		//USA.addAdjacentCountry(&Canada);
+		//USA.addAdjacentCountry(&Mexico);
+		//Mexico.addAdjacentCountry(&USA);
+		//France.addAdjacentCountry(&Canada);
+		//Italy.addAdjacentCountry(&Italy);
 
 
-	////add countries to david
-	//David.addCountry(&Canada);
-	//David.addCountry(&USA);
-	//Canada.setOwner(&David);
-	//Canada.setArmyNumber(10);
-	//USA.setOwner(&David);
-	//USA.setArmyNumber(6);
+		////add countries to david
+		//David.addCountry(&Canada);
+		//David.addCountry(&USA);
+		//Canada.setOwner(&David);
+		//Canada.setArmyNumber(10);
+		//USA.setOwner(&David);
+		//USA.setArmyNumber(6);
 
-	//Italy.setOwner(&David);
-	//David.addCountry(&Italy);
-	//Italy.setArmyNumber(3);
+		//Italy.setOwner(&David);
+		//David.addCountry(&Italy);
+		//Italy.setArmyNumber(3);
 
 
-	////add countries to John
-	//France.setOwner(&John);
-	//John.addCountry(&France);
-	//France.setArmyNumber(1);
-	//John.addCountry(&Mexico);
-	//Mexico.setOwner(&John);
-	//Mexico.setArmyNumber(1);
+		////add countries to John
+		//France.setOwner(&John);
+		//John.addCountry(&France);
+		//France.setArmyNumber(1);
+		//John.addCountry(&Mexico);
+		//Mexico.setOwner(&John);
+		//Mexico.setArmyNumber(1);
 
 		cout << "Welcome to single mode" << endl;
 		cout << "Please select the number of maps (1-5) you wish to play on : " << endl;
@@ -93,7 +93,7 @@ int main() {
 		cin >> games;
 		cout << "\nEnter the number of turns (10-50) you want to have before declaring a draw : " << endl;
 		cin >> turn;
-
+		
 		MapManager mm;
 		worldMap = mm.verifyMap("map1.txt");
 
@@ -210,85 +210,96 @@ int main() {
 			players.push_back(p4);
 			armies = 40;
 		}
-		
-		//randomizing the order of play
-		players2 = start.orderOfPlay(players);
 
-		//giving each player in the array a number of armies corresponding to how many players there are
-		start.provideArmy(players2);
+		for (int i = 0; i < maps; i++) {		//for each map loop
 
-		//printing out the player name in the array followed by the army number each player has
-		for (int i = 0; i < (int)players2.size(); i++)
-			std::cout << players2.at(i)->getName() << " ";
-		cout << endl;
-		
-		for (int i = 0; i < (int)players2.size(); i++)
-			std::cout << players2.at(i)->getNumberOfArmy() << " ";
-		cout << endl;
+			//randomizing the order of play
+			players2 = start.orderOfPlay(players);
 
-		MapManager mm;
-		worldMap = mm.verifyMap("map1.txt");
+			//giving each player in the array a number of armies corresponding to how many players there are
+			start.provideArmy(players2);
 
-		//assigning countries randomly to each player
-		start.assignCountries(worldMap->getMap(), players2);
+			//printing out the player name in the array followed by the army number each player has
+			for (int i = 0; i < (int)players2.size(); i++)
+				std::cout << players2.at(i)->getName() << " ";
+			cout << endl;
 
-		//Placing armies for each of the players
-		start.placeArmy(armies, players2, worldMap->getMap());
+			for (int i = 0; i < (int)players2.size(); i++)
+				std::cout << players2.at(i)->getNumberOfArmy() << " ";
+			cout << endl;
 
-		Driver d;
-		AttackPhase attackP;
-		FortificationPhase fortificationP;
+			MapManager mm;
+			worldMap = mm.verifyMap("map1.txt");
 
-		for (Player* p : players2) {
+			for (int j = 0; j < games; j++) {		//for each game loop
+				//assigning countries randomly to each player
+				start.assignCountries(worldMap->getMap(), players2);
 
-			// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
-			string strat;
-			cout << p->getName() << ", what strategy do you wish to adopt (ie. Aggressive, Passive, Random, Cheater)... note you cannot change your mind mid tournament : " << endl;
-			cin >> strat;
+				//Placing armies for each of the players
+				start.placeArmy(armies, players2, worldMap->getMap());
 
-			if (strat == "Aggressive" || strat == "aggressive") {
-				ConcreteStrategy1* cs1 = new ConcreteStrategy1();
-				p->setStrategy(cs1);
-				cout << "Agressive strategy adopted for " << p->getName() << endl;
-			}
-			else if (strat == "Passive" || strat == "passive") {
-				ConcreteStrategy2* cs2 = new ConcreteStrategy2();
-				p->setStrategy(cs2);
-				cout << "Passive strategy adopted for " << p->getName() << endl;
-			}
-			else if (strat == "Random" || strat == "random") {
-				ConcreteStrategy3 cs3;
-				p->setStrategy(&cs3);
-				cout << "Random strategy adopted for " << p->getName() << endl;
-			}
-			//ADD CHEATER STRAT
-			/*else if (strat == "Cheater" || strat == "cheater") {
-				ConcreteStrategy4 cs4;
-				p->setStrategy(&cs4);
-			}*/
+				Driver d;
+				AttackPhase attackP;
+				FortificationPhase fortificationP;
 
-		}
+				for (Player* p : players2) {
 
-		while (true) {
-			for (Player* p : players2) {
+					// ASK PLAYER WHICH STARTEGY HE/SHE WANTS TO USE
+					string strat;
+					cout << p->getName() << ", what strategy do you wish to adopt (ie. Aggressive, Passive, Random, Cheater)... note you cannot change your mind mid tournament : " << endl;
+					cin >> strat;
 
-					p->executeReinforce(worldMap, p);
-					p->executeAttack(p);
-					p->executeFortify(p);
+					if (strat == "Aggressive" || strat == "aggressive") {
+						ConcreteStrategy1* cs1 = new ConcreteStrategy1();
+						p->setStrategy(cs1);
+						cs1->tournament = true;
+						cout << "Agressive strategy adopted for " << p->getName() << endl;
+					}
+					else if (strat == "Passive" || strat == "passive") {
+						ConcreteStrategy2* cs2 = new ConcreteStrategy2();
+						p->setStrategy(cs2);
+						cs2->tournament = true;
+						cout << "Passive strategy adopted for " << p->getName() << endl;
+					}
+					else if (strat == "Random" || strat == "random") {
+						ConcreteStrategy3 cs3;
+						p->setStrategy(&cs3);
+						cout << "Random strategy adopted for " << p->getName() << endl;
+					}
+					//ADD CHEATER STRAT
+					/*else if (strat == "Cheater" || strat == "cheater") {
+					ConcreteStrategy4 cs4;
+					p->setStrategy(&cs4);
+					}*/
 
+				}
 
-				if (worldMap->isWinner(p) == true) {
+				//add the while loop below to the above for loop,  and add the following loop inside:
+				for (int t = 0; t < turn; t++)	{	//for each turn loop
+					//while (true) {
+						for (Player* p : players2) {
 
-					// add to number of wins a player has
-					p->setNbrOfWins();
-					break;
+							p->executeReinforce(worldMap, p);
+							p->executeAttack(p);
+							////////////////////////////
+							p->executeFortify(p);
+							//add another executeFortify1 which says always yes instead of asking
+
+							if (worldMap->isWinner(p) == true) {
+
+								// add to number of wins a player has
+								p->setNbrOfWins();
+								break;
+							}
+						}
+						system("pause");
+					//}
 				}
 			}
-			system("pause");
 		}
 	}
 
-	
+
 
 
 }
