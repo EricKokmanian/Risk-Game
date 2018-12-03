@@ -13,6 +13,7 @@ public:
 	void reinforce(Map*, Player*);
 	void attack(Player*);
 	void fortify(Player*);
+	bool tournament = false;
 private:
 	Country * attackingCountry;
 	Country* defendingCountry;
