@@ -9,6 +9,7 @@ using namespace std;
 ConcreteStrategy1::ConcreteStrategy1() {
 
 }
+
 void ConcreteStrategy1::reinforce(Map* worldmap, Player* player) {
 	int x = worldmap->getNumberOfCountries(*player);
 	if (x < 3) {
@@ -83,7 +84,7 @@ void ConcreteStrategy1::attack(Player* player) {
 		//search for enemy countries surrounding the elected attacking country
 		vector<Country*> defendingCountries;
 		for (auto it = maxArmies->getAdjacentCountries().begin(); it != maxArmies->getAdjacentCountries().end(); ++it) {
-			if ((*it)->getOwner() != player) {
+			if ((*it)->getOwner() != player && (*it)->getArmyNumber()>0) {
 				defendingCountries.push_back((*it));
 			}
 		}
@@ -98,21 +99,36 @@ void ConcreteStrategy1::attack(Player* player) {
 			cout << "There are no enemy countries surrounding " << maxArmies->getCountryName() << endl;
 		}
 		else {
-			//attacker chooses which country to attack
-			//attack1.chooseCountry();
-			cout << "Enter the corrsponding number of the country you want to attack: " << endl;
-			int i = 1;
-			vector<Country*> defendingCountries;
-			// list all the countries that the attacker can attack
-			for (auto it = maxArmies->getAdjacentCountries().begin(); it != maxArmies->getAdjacentCountries().end(); ++it) {
-				if ((*it)->getOwner() != player) {
-					defendingCountries.push_back((*it));
-					cout << i << ". " << (*it)->getCountryName() << endl;
-					i++;
+			if(tournament == false){
+				//attacker chooses which country to attack
+				//attack1.chooseCountry();
+				cout << "Enter the corrsponding number of the country you want to attack: " << endl;
+				int i = 1;
+				vector<Country*> defendingCountries;
+				// list all the countries that the attacker can attack
+				for (auto it = maxArmies->getAdjacentCountries().begin(); it != maxArmies->getAdjacentCountries().end(); ++it) {
+					if ((*it)->getOwner() != player) {
+						defendingCountries.push_back((*it));
+						cout << i << ". " << (*it)->getCountryName() << endl;
+						i++;
+					}
+
 				}
+				cout << "Attacking the first adjacent country " << endl;
+				for (auto it = maxArmies->getAdjacentCountries().begin(); it != maxArmies->getAdjacentCountries().end(); ++it) {
+					if ((*it)->getOwner() != player) {
+						if ((*it)->getArmyNumber() != 0) {
+							defendingCountries.push_back((*it));
+						}
+					}
+				}
+
 			}
 			// attacker has chosen which country to attack, initialize variables
-			cin >> playerChoice;
+			if (tournament == false) {
+				cin >> playerChoice;
+			}
+			playerChoice = 1;
 			defendingCountry = defendingCountries[playerChoice - 1];
 			defender = defendingCountry->getOwner();
 			attackArmySize = maxArmies->getArmyNumber();
@@ -145,8 +161,12 @@ void ConcreteStrategy1::attack(Player* player) {
 				system("pause");
 			}
 			else {
-				cout << defenderName << ", you can defend with 1 or 2 dices\n How many dices do you want to use?" << endl;
-				cin >> numDefenseDices;
+				if (tournament == false) {
+					cout << defenderName << ", you can defend with 1 or 2 dices\n How many dices do you want to use?" << endl;
+					cin >> numDefenseDices;
+				}
+				cout << defenderName << ", you will defend with 1 dice" << endl;
+				numDefenseDices = 1;
 			}
 			//game rolls the dices and declares the winner and reduces army sizes accordingly
 			vector<int> attackDiceValues;
@@ -204,31 +224,36 @@ void ConcreteStrategy1::attack(Player* player) {
 				cout << attackerName << " has conquered " << defendingCountry->getCountryName() << endl;
 
 				// move army after conquering defending country
-				cout << attackerName << ", do you want to move your army from " << maxArmies->getCountryName()
-					<< " to " << defendingCountry->getCountryName() << "?" << endl;
 				string playerChoice;
-				cin >> playerChoice;
+				if (tournament == false) {
+					cout << attackerName << ", do you want to move your army from " << maxArmies->getCountryName()
+						<< " to " << defendingCountry->getCountryName() << "?" << endl;
+					cin >> playerChoice;
+				}
+				playerChoice = "yes";
 				if (playerChoice == "yes") {
 					cout << maxArmies->getCountryName() << " has an army of " << maxArmies->getArmyNumber()
 						<< " and " << defendingCountry->getCountryName() << " has an army of " << defendingCountry->getArmyNumber() << endl;
-					cout << "How many armies do you want to move to " << defendingCountry->getCountryName() << "?" << endl;
-					while (true) {
-						int armySize = 0;
-						cin >> armySize;
-						if (armySize >= maxArmies->getArmyNumber()) {
-							cout << "You need to keep at least one army on " << maxArmies->getCountryName() << endl;
-						}
-						else {
-							int attackArmy = maxArmies->getArmyNumber();
-							int defendArmy = defendingCountry->getArmyNumber();
-							maxArmies->setArmyNumber(attackArmy - armySize);
-							defendingCountry->setArmyNumber(defendArmy + armySize);
-							cout << maxArmies->getCountryName() << " has now " << maxArmies->getArmyNumber() << endl;
-							cout << defendingCountry->getCountryName() << " has now " << defendingCountry->getArmyNumber() << endl;
-							break;
+					if (tournament == false) {
+						cout << "How many armies do you want to move to " << defendingCountry->getCountryName() << "?" << endl;
+						while (true) {
+							int armySize = 0;
+							cin >> armySize;
+							if (armySize >= maxArmies->getArmyNumber()) {
+								cout << "You need to keep at least one army on " << maxArmies->getCountryName() << endl;
+							}
+							else {
+								int attackArmy = maxArmies->getArmyNumber();
+								int defendArmy = defendingCountry->getArmyNumber();
+								maxArmies->setArmyNumber(attackArmy - armySize);
+								defendingCountry->setArmyNumber(defendArmy + armySize);
+								cout << maxArmies->getCountryName() << " has now " << maxArmies->getArmyNumber() << endl;
+								cout << defendingCountry->getCountryName() << " has now " << defendingCountry->getArmyNumber() << endl;
+								break;
+							}
 						}
 					}
-
+					cout << "Not moving any armies to" << defendingCountry->getCountryName() << " (Agressive Strategy)" << endl;
 				}
 				else {
 					return;
@@ -253,10 +278,12 @@ void  ConcreteStrategy1::fortify(Player* player) {
 	int min = 0; // nbr of armies in weakest country
 	Country* toCountry = NULL;
 	cout << "FORTIFICATION PHASE HAS STARTED!" << endl;
-	cout << "Do you want to move an army from a country to another?" << endl;
 	string playerChoice = "";
-	cin >> playerChoice;
-
+	if (tournament == false) {
+		cout << "Do you want to move an army from a country to another?" << endl;
+		cin >> playerChoice;
+	}
+	playerChoice = "yes";
 	if (playerChoice == "yes") {
 		vector <Country*> countries = player->getCountries();
 
@@ -306,12 +333,14 @@ void  ConcreteStrategy1::fortify(Player* player) {
 		cout << " You are moving armies from " << fromCountry->getCountryName() << " (weakest country) to " << toCountry->getCountryName() << " (strongest country)." << endl;
 
 		// select army size
-
+		if (tournament == false)
 		cout << "How many armies do you want to move?" << endl;
 
 		while (true) {
 			int playerChoice = 0;
+			if(tournament == false)
 			cin >> playerChoice;
+			playerChoice = 1;
 			if (playerChoice >= fromCountry->getArmyNumber()) {
 				cout << "Please keep at least one army left on " << fromCountry->getCountryName() << endl;
 			}
@@ -329,7 +358,3 @@ void  ConcreteStrategy1::fortify(Player* player) {
 	}
 
 }
-
-
-
-
